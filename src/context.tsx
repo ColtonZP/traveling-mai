@@ -14,7 +14,7 @@ const defaultUser: UserInfo = {
 
 const AuthContext = createContext({
   user: defaultUser,
-  signIn: (email: string, password: string) => {},
+  signIn: () => {},
 })
 
 export function useAuth() {
