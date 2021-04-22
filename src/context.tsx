@@ -15,6 +15,7 @@ const defaultUser: UserInfo = {
 const AuthContext = createContext({
   user: defaultUser,
   signIn: () => {},
+  signOut: () => {},
 })
 
 export function useAuth() {
@@ -55,9 +56,14 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
   }
 
+  function signOut() {
+    return auth.signOut()
+  }
+
   const value = {
     user,
     signIn,
+    signOut,
   }
 
   return (
