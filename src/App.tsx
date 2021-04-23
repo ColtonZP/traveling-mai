@@ -1,6 +1,6 @@
 import React from 'react'
 import { SignIn } from './components/SignIn'
-import { AuthProvider } from './Context'
+import { AuthProvider } from './AuthContext'
 
 export const App = () => {
   return (

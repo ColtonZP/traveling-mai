@@ -47,7 +47,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       .then(res => {
         const credential = res.credential as firebase.auth.OAuthCredential
         const token = credential!.accessToken
-        // setUser(res.user)
       })
       .catch(error => {
         const errorCode = error.code
