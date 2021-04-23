@@ -4,7 +4,7 @@ import { useAuth } from '../Context'
 export const SignIn = () => {
   const { user, signIn, signOut } = useAuth()
 
-  if (user) {
+  if (user.displayName) {
     return (
       <>
         <h1>Signed in as {user.displayName}</h1>

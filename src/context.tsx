@@ -1,15 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import firebase from 'firebase/app'
-import { app, auth, googleAuth } from './firebase'
-import { UserInfo } from '@firebase/auth-types'
 
-const defaultUser: UserInfo = {
+import { auth, googleAuth } from './firebase'
+import { User } from './types/user'
+
+const defaultUser: User = {
   displayName: null,
   email: null,
-  phoneNumber: null,
   photoURL: null,
-  providerId: '',
-  uid: '',
 }
 
 const AuthContext = createContext({
@@ -23,13 +21,17 @@ export function useAuth() {
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<any>(defaultUser)
+  const [user, setUser] = useState<User>(defaultUser)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        setUser(user)
+        setUser({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        })
       } else {
         setUser(defaultUser)
       }
@@ -45,7 +47,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       .then(res => {
         const credential = res.credential as firebase.auth.OAuthCredential
         const token = credential!.accessToken
-        setUser(res.user)
+        // setUser(res.user)
       })
       .catch(error => {
         const errorCode = error.code
@@ -60,14 +62,14 @@ export const AuthProvider: React.FC = ({ children }) => {
     return auth.signOut()
   }
 
-  const value = {
-    user,
-    signIn,
-    signOut,
-  }
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider
+      value={{
+        user,
+        signIn,
+        signOut,
+      }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   )
