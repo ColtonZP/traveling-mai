@@ -1,23 +1,41 @@
-import React, { createContext, useContext, useState } from 'react'
+import React from 'react'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
-const videos = {
-  results: '',
+const queryClient = new QueryClient()
+
+export const YouTube = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Videos />
+    </QueryClientProvider>
+  )
 }
 
-const VideoContext = createContext({
-  results: '',
-})
+const Videos = () => {
+  const { isLoading, error, data }: any = useQuery('repoData', () =>
+    fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_CHANNEL_ID}&maxResults=1&key=${process.env.REACT_APP_API_KEY}`,
+    ).then(res => res.json()),
+  )
 
-export function useVideoContext() {
-  return useContext(VideoContext)
-}
+  if (isLoading) return <h1>YouTube</h1>
 
-export const VideoProvider: React.FC = ({ children }) => {
-  const [loading, setLoading] = useState<boolean>(true)
+  if (error) {
+    alert('There was an error loading the videos from YouTube ' + error.message)
+    return (
+      <div>
+        <h1>There was an error loading the videos from YouTube.</h1>
+        <h1>{error.message}</h1>
+        <h1>Try again later.</h1>
+      </div>
+    )
+  }
+
+  console.log(error, data)
 
   return (
-    <VideoContext.Provider value={videos}>
-      {!loading && children}
-    </VideoContext.Provider>
+    <div>
+      <h1>YouTube</h1>
+    </div>
   )
 }
