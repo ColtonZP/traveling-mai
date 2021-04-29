@@ -24,9 +24,9 @@ const Videos = () => {
     ).then(res => res.json()),
   )
 
-  if (jumboVideo.isLoading) return <h1>Loading...</h1>
+  if (jumboVideo.isLoading || playlists.loading) return <h1>Loading...</h1>
 
-  if (jumboVideo.error) {
+  if (jumboVideo.error || playlists.error) {
     alert(
       'There was an error loading the videos from YouTube ' +
         jumboVideo.error.message,
@@ -34,7 +34,8 @@ const Videos = () => {
     return (
       <div>
         <p>There was an error loading the videos from YouTube.</p>
-        <p>{jumboVideo.error.message}</p>
+        <p>{jumboVideo.error?.message}</p>
+        <p>{playlists.error?.message}</p>
         <p>Try again later....</p>
       </div>
     )
