@@ -12,26 +12,29 @@ export const YouTube = () => {
 }
 
 const Videos = () => {
-  const { isLoading, error, data }: any = useQuery('repoData', () =>
+  const jumboVideo: any = useQuery('jumbotronVideo', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_CHANNEL_ID}&maxResults=1&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
-  if (isLoading) return <h1>YouTube</h1>
+  if (jumboVideo.isLoading) return <h1>Loading...</h1>
 
-  if (error) {
-    alert('There was an error loading the videos from YouTube ' + error.message)
+  if (jumboVideo.error) {
+    alert(
+      'There was an error loading the videos from YouTube ' +
+        jumboVideo.error.message,
+    )
     return (
       <div>
-        <h1>There was an error loading the videos from YouTube.</h1>
-        <h1>{error.message}</h1>
-        <h1>Try again later.</h1>
+        <p>There was an error loading the videos from YouTube.</p>
+        <p>{jumboVideo.error.message}</p>
+        <p>Try again later....</p>
       </div>
     )
   }
 
-  console.log(error, data)
+  console.log(jumboVideo)
 
   return (
     <div>
