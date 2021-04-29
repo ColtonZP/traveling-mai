@@ -18,6 +18,12 @@ const Videos = () => {
     ).then(res => res.json()),
   )
 
+  const playlists: any = useQuery('playlists', () =>
+    fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=${process.env.REACT_APP_CHANNEL_ID}&maxResults=50&key=${process.env.REACT_APP_API_KEY}`,
+    ).then(res => res.json()),
+  )
+
   if (jumboVideo.isLoading) return <h1>Loading...</h1>
 
   if (jumboVideo.error) {
@@ -34,7 +40,7 @@ const Videos = () => {
     )
   }
 
-  console.log(jumboVideo)
+  console.log(playlists.data)
 
   return (
     <div>
