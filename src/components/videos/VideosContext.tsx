@@ -43,7 +43,7 @@ const Videos = () => {
     )
   }
 
-  console.log(playlists.data.items[0])
+  // console.log(playlists.data.items[0])
 
   return (
     <div>

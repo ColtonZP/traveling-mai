@@ -16,7 +16,7 @@ export const Playlist = ({ title, playListId }: Props) => {
 
   if (videos.isLoading) return <p>loading video...</p>
 
-  console.log(videos.data)
+  // console.log(videos.data)
 
   return (
     <>
