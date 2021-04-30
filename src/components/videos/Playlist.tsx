@@ -16,16 +16,21 @@ export const Playlist = ({ title, playListId }: Props) => {
 
   if (videos.isLoading) return <p>loading video...</p>
 
+  console.log(videos.data)
+
   return (
     <>
       {videos.data.items.length >= 1 && (
         <div>
           <h2>{title}</h2>
           {videos.data.items.map((video: any) => (
-            <VideoFrame
-              key={video.snippet.resourceId.videoId}
-              videoId={video.snippet.resourceId.videoId}
-            />
+            <button key={video.id}>
+              <img src={video.snippet.thumbnails.high.url} alt="" />
+            </button>
+            // <VideoFrame
+            //   key={video.snippet.resourceId.videoId}
+            //   videoId={video.snippet.resourceId.videoId}
+            // />
           ))}
         </div>
       )}
