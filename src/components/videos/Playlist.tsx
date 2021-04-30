@@ -7,10 +7,10 @@ type Props = {
   playListId: string
 }
 
-export const Playlist = ({ title, playListId }: any) => {
+export const Playlist = ({ title, playListId }: Props) => {
   const videos: any = useQuery(String(playListId), () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=50&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=5&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
