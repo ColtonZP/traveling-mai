@@ -1,11 +1,11 @@
 import React from 'react'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 
 import { Playlist } from './Playlist'
 import { VideoFrame } from './VideoFrame'
 import { ThumbnailLink } from './ThumbnailLink'
 
-export const Videos = () => {
+export const Home = () => {
   const latestVideos: any = useQuery('jumbotronVideo', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
