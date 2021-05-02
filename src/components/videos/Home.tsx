@@ -6,7 +6,7 @@ import { VideoFrame } from './VideoFrame'
 import { ThumbnailLink } from './ThumbnailLink'
 
 export const Home = () => {
-  const latestVideos: any = useQuery('jumbotronVideo', () =>
+  const latestVideos: any = useQuery('latestVideos', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
@@ -35,7 +35,7 @@ export const Home = () => {
     )
   }
 
-  // console.log(latestVideos.data)
+  console.log('Latest:', latestVideos.data)
 
   return (
     <div>

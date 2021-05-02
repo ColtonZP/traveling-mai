@@ -7,7 +7,7 @@ import { VideoFrame } from './VideoFrame'
 export const VideoPage = () => {
   const { id } = useParams<{ id: string }>()
 
-  const video: any = useQuery('jumbotronVideo', () =>
+  const video: any = useQuery(id, () =>
     fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&id=${id}&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
