@@ -16,7 +16,7 @@ export const YouTube = () => {
 }
 
 const Videos = () => {
-  const jumboVideo: any = useQuery('jumbotronVideo', () =>
+  const latestVideos: any = useQuery('jumbotronVideo', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
@@ -28,38 +28,38 @@ const Videos = () => {
     ).then(res => res.json()),
   )
 
-  if (jumboVideo.isLoading || playlists.isLoading) return <h1>Loading...</h1>
+  if (latestVideos.isLoading || playlists.isLoading) return <h1>Loading...</h1>
 
-  if (jumboVideo.error || playlists.error) {
+  if (latestVideos.error || playlists.error) {
     alert(
       'There was an error loading the videos from YouTube ' +
-        jumboVideo.error.message,
+        latestVideos.error.message,
     )
     return (
       <div>
         <p>There was an error loading the videos from YouTube.</p>
-        <p>{jumboVideo.error?.message}</p>
+        <p>{latestVideos.error?.message}</p>
         <p>{playlists.error?.message}</p>
         <p>Try again later....</p>
       </div>
     )
   }
 
-  console.log(jumboVideo.data)
+  console.log(latestVideos.data)
 
   return (
     <div>
       <h1>Latest Video</h1>
 
-      {jumboVideo.data.items.map((video: any, index: number) =>
+      {latestVideos.data.items.map((video: any, index: number) =>
         index === 0 ? (
           <>
             <VideoFrame
               key={video.id}
               className={'jumbo'}
-              videoId={jumboVideo.data.items[0].snippet.resourceId.videoId}
+              videoId={latestVideos.data.items[0].snippet.resourceId.videoId}
             />
-            <p>{jumboVideo.data.items[0].snippet.description}</p>
+            <p>{latestVideos.data.items[0].snippet.description}</p>
           </>
         ) : (
           <VideoLink key={video.id} video={video} />
