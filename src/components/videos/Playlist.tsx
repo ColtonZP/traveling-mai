@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 import { VideoFrame } from './VideoFrame'
-import { VideoLink } from './VideoLink'
+import { ThumbnailLink } from './ThumbnailLink'
 
 type Props = {
   title: string
@@ -19,7 +19,7 @@ export const Playlist = ({ title, playListId }: Props) => {
 
   if (videos.isLoading) return <p>loading video...</p>
 
-  // console.log(videos.data)
+  console.log(videos.data)
 
   return (
     <>
@@ -27,7 +27,12 @@ export const Playlist = ({ title, playListId }: Props) => {
         <div>
           <h2>{title}</h2>
           {videos.data.items.map((video: any) => (
-            <VideoLink key={video.id} video={video} />
+            <div key={video.id} className="VideoLink">
+              <ThumbnailLink video={video} />
+              <Link to={`/${video.snippet.resourceId.videoId}`}>
+                <h3>{video.snippet.title}</h3>
+              </Link>
+            </div>
           ))}
         </div>
       )}

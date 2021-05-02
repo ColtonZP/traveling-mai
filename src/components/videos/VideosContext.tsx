@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 import { Playlist } from './Playlist'
 import { VideoFrame } from './VideoFrame'
-import { VideoLink } from './VideoLink'
+import { ThumbnailLink } from './ThumbnailLink'
 
 const queryClient = new QueryClient()
 
@@ -45,7 +45,7 @@ const Videos = () => {
     )
   }
 
-  console.log(latestVideos.data)
+  // console.log(latestVideos.data)
 
   return (
     <div>
@@ -62,7 +62,7 @@ const Videos = () => {
             <p>{latestVideos.data.items[0].snippet.description}</p>
           </>
         ) : (
-          <VideoLink key={video.id} video={video} />
+          <ThumbnailLink key={video.id} video={video} />
         ),
       )}
 
