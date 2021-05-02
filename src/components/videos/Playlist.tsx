@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 import { VideoFrame } from './VideoFrame'
+import { VideoLink } from './VideoLink'
 
 type Props = {
   title: string
@@ -26,9 +27,7 @@ export const Playlist = ({ title, playListId }: Props) => {
         <div>
           <h2>{title}</h2>
           {videos.data.items.map((video: any) => (
-            <Link key={video.id} to={`/${video.snippet.resourceId.videoId}`}>
-              <img src={video.snippet.thumbnails.high.url} alt="" />
-            </Link>
+            <VideoLink key={video.id} video={video} />
           ))}
         </div>
       )}

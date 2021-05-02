@@ -1,7 +1,9 @@
 import React from 'react'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
 import { Playlist } from './Playlist'
 import { VideoFrame } from './VideoFrame'
+import { VideoLink } from './VideoLink'
 
 const queryClient = new QueryClient()
 
@@ -16,7 +18,7 @@ export const YouTube = () => {
 const Videos = () => {
   const jumboVideo: any = useQuery('jumbotronVideo', () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=1&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
@@ -43,17 +45,26 @@ const Videos = () => {
     )
   }
 
-  // console.log(playlists.data.items[0])
+  console.log(jumboVideo.data)
 
   return (
     <div>
       <h1>Latest Video</h1>
-      <VideoFrame
-        className={'jumbo'}
-        videoId={jumboVideo.data.items[0].snippet.resourceId.videoId}
-      />
 
-      <p>{jumboVideo.data.items[0].snippet.description}</p>
+      {jumboVideo.data.items.map((video: any, index: number) =>
+        index === 0 ? (
+          <>
+            <VideoFrame
+              key={video.id}
+              className={'jumbo'}
+              videoId={jumboVideo.data.items[0].snippet.resourceId.videoId}
+            />
+            <p>{jumboVideo.data.items[0].snippet.description}</p>
+          </>
+        ) : (
+          <VideoLink key={video.id} video={video} />
+        ),
+      )}
 
       {playlists.data.items.map((playlist: any) => (
         <Playlist
