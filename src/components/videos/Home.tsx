@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
 import { Playlist } from './Playlist'
@@ -47,12 +48,18 @@ export const Home = () => {
             <VideoFrame
               key={video.id}
               className={'jumbo'}
-              videoId={latestVideos.data.items[0].snippet.resourceId.videoId}
+              videoId={video.snippet.resourceId.videoId}
             />
-            <p>{latestVideos.data.items[0].snippet.description}</p>
+            <h2>{video.snippet.title}</h2>
+            <p>{video.snippet.description}</p>
           </>
         ) : (
-          <ThumbnailLink key={video.id} video={video} />
+          <>
+            <ThumbnailLink key={video.id} video={video} />
+            <Link to={`/${video.snippet.resourceId.videoId}`}>
+              <h3>{video.snippet.title}</h3>
+            </Link>
+          </>
         ),
       )}
 
