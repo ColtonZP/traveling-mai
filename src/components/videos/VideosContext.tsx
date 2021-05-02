@@ -5,17 +5,7 @@ import { Playlist } from './Playlist'
 import { VideoFrame } from './VideoFrame'
 import { ThumbnailLink } from './ThumbnailLink'
 
-const queryClient = new QueryClient()
-
-export const YouTube = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Videos />
-    </QueryClientProvider>
-  )
-}
-
-const Videos = () => {
+export const Videos = () => {
   const latestVideos: any = useQuery('jumbotronVideo', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
