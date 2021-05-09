@@ -60,8 +60,8 @@ export const Home = () => {
         {latestVideos.data.items.map(
           (video: any, index: number) =>
             index > 0 && (
-              <div className="video-link">
-                <ThumbnailLink key={video.id} video={video} />
+              <div className="video-link" key={video.id}>
+                <ThumbnailLink video={video} />
                 <Link to={`/${video.snippet.resourceId.videoId}`}>
                   <h4>{video.snippet.title}</h4>
                 </Link>

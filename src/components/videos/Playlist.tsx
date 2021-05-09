@@ -2,7 +2,6 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
-import { VideoFrame } from './VideoFrame'
 import { ThumbnailLink } from './ThumbnailLink'
 
 type Props = {
@@ -18,8 +17,6 @@ export const Playlist = ({ title, playListId }: Props) => {
   )
 
   if (videos.isLoading) return <p>loading video...</p>
-
-  console.log(videos.data)
 
   return (
     <>

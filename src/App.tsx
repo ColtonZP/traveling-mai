@@ -1,5 +1,5 @@
 import React from 'react'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import { SignIn } from './components/SignIn'
@@ -10,7 +10,6 @@ import { VideoPage } from './components/videos/VideoPage'
 const queryClient = new QueryClient()
 
 export const App = () => {
-  window.addEventListener('scroll', () => console.log('object'))
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClient}>

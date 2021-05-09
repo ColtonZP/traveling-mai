@@ -1,5 +1,5 @@
 import React from 'react'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 
 import { VideoFrame } from './VideoFrame'
@@ -14,8 +14,6 @@ export const VideoPage = () => {
   )
 
   if (video.isLoading) return <h1>Loading...</h1>
-
-  console.log(video)
 
   return (
     <div>
