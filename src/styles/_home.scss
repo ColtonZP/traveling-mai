@@ -18,6 +18,21 @@
       & p {
         margin-top: 1em;
       }
+
+      & .hidden {
+        max-height: 14rem;
+        overflow: hidden;
+      }
     }
+  }
+
+  & .video-link {
+    & img {
+      aspect-ratio: 16/9;
+    }
+  }
+
+  & .latest {
+    
   }
 }

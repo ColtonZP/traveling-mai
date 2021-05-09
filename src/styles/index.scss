@@ -40,7 +40,8 @@ h5 {
 
 p {
   margin-bottom: 1rem;
-  white-space: pre-line;
+  white-space: break-spaces;
+  word-wrap: break-word;
 }
 
 h1 {

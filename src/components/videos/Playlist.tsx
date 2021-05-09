@@ -24,10 +24,10 @@ export const Playlist = ({ title, playListId }: Props) => {
   return (
     <>
       {videos.data.items.length >= 1 && (
-        <div>
+        <div className="playlist">
           <h2>{title}</h2>
           {videos.data.items.map((video: any) => (
-            <div key={video.id} className="VideoLink">
+            <div key={video.id} className="video-link">
               <ThumbnailLink video={video} />
               <Link to={`/${video.snippet.resourceId.videoId}`}>
                 <h3>{video.snippet.title}</h3>
