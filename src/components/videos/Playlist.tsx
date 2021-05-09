@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 import { ThumbnailLink } from './ThumbnailLink'
+import arrow from '../../images/arrow.svg'
 
 type Props = {
   title: string
@@ -12,7 +13,7 @@ type Props = {
 export const Playlist = ({ title, playListId }: Props) => {
   const videos: any = useQuery(playListId, () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=5&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=9&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
@@ -32,6 +33,12 @@ export const Playlist = ({ title, playListId }: Props) => {
                 </Link>
               </div>
             ))}
+            <div className="more-from-playlist">
+              <Link to="/">
+                <span>More videos</span>
+                <img src={arrow} alt="" />
+              </Link>
+            </div>
           </div>
         </div>
       )}

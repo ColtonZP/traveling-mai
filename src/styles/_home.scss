@@ -1,6 +1,6 @@
 .home {
   & .jumbo-video {
-    background-color: #3e3e3e;
+    background-color: var(--secondary-gray);
     border-radius: 5px;
     display: inline-flex;
     align-items: flex-start;
@@ -45,11 +45,35 @@
   & .playlist .videos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 2em;
+    grid-gap: 0.5em 2em;
   }
 
   & .latest,
   & .playlist {
     margin: 4rem 0;
+  }
+
+  & .playlist {
+    & .more-from-playlist > a {
+      background: var(--secondary-gray);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1em;
+
+      & span {
+        font-size: 1.414rem;
+        display: block;
+        text-align: center;
+      }
+
+      & img {
+        margin-top: 1em;
+        width: 2.5em;
+        height: 2.5em;
+      }
+    }
   }
 }
