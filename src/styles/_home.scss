@@ -35,6 +35,33 @@
     }
   }
 
+  & .loading {
+    & .video {
+      background: black;
+    }
+
+    & h3 {
+      height: 1.3em;
+    }
+
+    & p {
+      height: 10em;
+    }
+
+    & h3,
+    & p {
+      background: linear-gradient(
+        to right,
+        #2d2d2d 0%,
+        #3e3e3e 10%,
+        #2d2d2d 20%
+      );
+      background-size: 200% 200%;
+      border-radius: 3px;
+      animation: loading 2s linear infinite;
+    }
+  }
+
   & .video-link {
     & img {
       aspect-ratio: 16/9;
@@ -78,5 +105,14 @@
         height: 1.5em;
       }
     }
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }

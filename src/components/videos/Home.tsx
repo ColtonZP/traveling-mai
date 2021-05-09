@@ -26,7 +26,19 @@ export const Home = () => {
     ).then(res => res.json()),
   )
 
-  if (latestVideos.isLoading || playlists.isLoading) return <p>Loading...</p>
+  if (latestVideos.isLoading || playlists.isLoading)
+    return (
+      <div className="home">
+        <h2>Loading...</h2>
+        <div className="jumbo-video loading">
+          <div className="video" />
+          <div className="words">
+            <h3 />
+            <p />
+          </div>
+        </div>
+      </div>
+    )
 
   if (latestVideos.error || playlists.error) {
     alert('There was an error loading the videos ' + latestVideos.error.message)
