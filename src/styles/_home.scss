@@ -23,6 +23,15 @@
         max-height: 14rem;
         overflow: hidden;
       }
+
+      & button {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        padding: 0.5em 0;
+        text-decoration: underline;
+      }
     }
   }
 

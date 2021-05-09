@@ -8,12 +8,17 @@ import { ThumbnailLink } from './ThumbnailLink'
 
 export const Home = () => {
   const [showDescription, updateDesc] = useState<boolean>(false)
+  let latestVideo
 
   const latestVideos: any = useQuery('latestVideos', () =>
     fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
+
+  if (latestVideos.isSuccess) {
+    latestVideo = latestVideos.data.items[0]
+  }
 
   const playlists: any = useQuery('playlists', () =>
     fetch(
@@ -24,10 +29,7 @@ export const Home = () => {
   if (latestVideos.isLoading || playlists.isLoading) return <p>Loading...</p>
 
   if (latestVideos.error || playlists.error) {
-    alert(
-      'There was an error loading the videos from YouTube ' +
-        latestVideos.error.message,
-    )
+    alert('There was an error loading the videos ' + latestVideos.error.message)
     return (
       <div>
         <p>There was an error loading the videos from YouTube.</p>
@@ -43,13 +45,15 @@ export const Home = () => {
       <h2>Latest Videos</h2>
       <div className="jumbo-video">
         <VideoFrame
-          key={latestVideos.data.items[0].id}
-          videoId={latestVideos.data.items[0].snippet.resourceId.videoId}
+          key={latestVideo?.id}
+          videoId={latestVideo?.snippet.resourceId.videoId}
         />
         <div className="words">
-          <h3>{latestVideos.data.items[0].snippet.title}</h3>
-          <p className={showDescription ? 'show' : 'hidden'}>
-            {latestVideos.data.items[0].snippet.description}
+          <h3>{latestVideo?.snippet.title}</h3>
+          <p>
+            {showDescription
+              ? latestVideo?.snippet.description
+              : latestVideo?.snippet.description.substring(0, 140) + '...'}
           </p>
           <button onClick={() => updateDesc(!showDescription)}>
             {showDescription ? 'Show less' : 'Show more'}
