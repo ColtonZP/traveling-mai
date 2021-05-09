@@ -10,11 +10,14 @@ import { VideoPage } from './components/videos/VideoPage'
 const queryClient = new QueryClient()
 
 export const App = () => {
+  window.addEventListener('scroll', () => console.log('object'))
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <Link to="/">Josh Vlogs</Link>
+          <Link to="/">
+            <h1>Josh Vlogs</h1>
+          </Link>
           <SignIn />
           <Switch>
             <Route exact path="/" component={Home} />
