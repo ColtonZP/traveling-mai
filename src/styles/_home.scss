@@ -32,7 +32,15 @@
     }
   }
 
-  & .latest {
-    
+  & .latest,
+  & .playlist .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 2em;
+  }
+
+  & .latest,
+  & .playlist {
+    margin: 4rem 0;
   }
 }

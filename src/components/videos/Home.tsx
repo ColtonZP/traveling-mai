@@ -40,7 +40,7 @@ export const Home = () => {
 
   return (
     <div className="home">
-      <h2>Latest Video</h2>
+      <h2>Latest Videos</h2>
       <div className="jumbo-video">
         <VideoFrame
           key={latestVideos.data.items[0].id}
@@ -63,7 +63,7 @@ export const Home = () => {
               <div className="video-link">
                 <ThumbnailLink key={video.id} video={video} />
                 <Link to={`/${video.snippet.resourceId.videoId}`}>
-                  <h3>{video.snippet.title}</h3>
+                  <h4>{video.snippet.title}</h4>
                 </Link>
               </div>
             ),
