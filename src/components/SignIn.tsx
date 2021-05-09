@@ -7,11 +7,17 @@ export const SignIn = () => {
   if (user.displayName) {
     return (
       <>
-        <h1>Signed in as {user.displayName}</h1>
-        <button onClick={() => signOut()}>Sign out</button>
+        <span className="user">Signed in as {user.displayName}</span>
+        <button className="sign-out" onClick={() => signOut()}>
+          Sign out
+        </button>
       </>
     )
   }
 
-  return <button onClick={() => signIn()}>Sign in with Google</button>
+  return (
+    <button className="sign-in" onClick={() => signIn()}>
+      Sign in with Google
+    </button>
+  )
 }

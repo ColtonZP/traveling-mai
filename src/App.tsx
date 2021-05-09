@@ -15,10 +15,13 @@ export const App = () => {
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <Link to="/">
-            <h1>Josh Vlogs</h1>
-          </Link>
-          <SignIn />
+          <header className="container">
+            <Link to="/">
+              <h1>Josh Vlogs</h1>
+            </Link>
+            <SignIn />
+          </header>
+
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/:id" component={VideoPage} />
