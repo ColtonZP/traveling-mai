@@ -2,7 +2,6 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
-import { ThumbnailLink } from './ThumbnailLink'
 import arrow from '../../images/arrow.svg'
 
 type Props = {
@@ -33,12 +32,14 @@ export const Playlist = ({ title, playListId }: Props) => {
 
           <div className="videos">
             {videos.data.items.map((video: any) => (
-              <div key={video.id} className="video-link">
-                <ThumbnailLink video={video} />
-                <Link to={`/${video.snippet.resourceId.videoId}`}>
-                  <h4>{video.snippet.title}</h4>
-                </Link>
-              </div>
+              <Link
+                to={`/${video.snippet.resourceId.videoId}`}
+                key={video.id}
+                className="video-link"
+              >
+                <img src={video.snippet.thumbnails.medium.url} alt="" />
+                <h4>{video.snippet.title}</h4>
+              </Link>
             ))}
           </div>
         </div>

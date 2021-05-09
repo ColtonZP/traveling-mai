@@ -4,7 +4,6 @@ import { useQuery } from 'react-query'
 
 import { Playlist } from './Playlist'
 import { VideoFrame } from './VideoFrame'
-import { ThumbnailLink } from './ThumbnailLink'
 
 export const Home = () => {
   const [showDescription, updateDesc] = useState<boolean>(false)
@@ -76,12 +75,14 @@ export const Home = () => {
         {latestVideos.data.items.map(
           (video: any, index: number) =>
             index > 0 && (
-              <div className="video-link" key={video.id}>
-                <ThumbnailLink video={video} />
-                <Link to={`/${video.snippet.resourceId.videoId}`}>
-                  <h4>{video.snippet.title}</h4>
-                </Link>
-              </div>
+              <Link
+                to={`/${video.snippet.resourceId.videoId}`}
+                className="video-link"
+                key={video.id}
+              >
+                <img src={video.snippet.thumbnails.medium.url} alt="" />
+                <h4>{video.snippet.title}</h4>
+              </Link>
             ),
         )}
       </div>
