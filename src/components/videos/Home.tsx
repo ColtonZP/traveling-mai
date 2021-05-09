@@ -12,7 +12,7 @@ export const Home = () => {
 
   const latestVideos: any = useQuery('latestVideos', () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${process.env.REACT_APP_PLAYLIST_ID}&maxResults=5&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 

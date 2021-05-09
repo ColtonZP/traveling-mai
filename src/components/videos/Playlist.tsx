@@ -13,7 +13,7 @@ type Props = {
 export const Playlist = ({ title, playListId }: Props) => {
   const videos: any = useQuery(playListId, () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=9&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=6&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
@@ -23,7 +23,14 @@ export const Playlist = ({ title, playListId }: Props) => {
     <>
       {videos.data.items.length >= 1 && (
         <div className="playlist">
-          <h2>{title}</h2>
+          <div className="title">
+            <h2>{title}</h2>
+            <Link to="/">
+              <span>More videos</span>
+              <img src={arrow} alt="" />
+            </Link>
+          </div>
+
           <div className="videos">
             {videos.data.items.map((video: any) => (
               <div key={video.id} className="video-link">
@@ -33,12 +40,6 @@ export const Playlist = ({ title, playListId }: Props) => {
                 </Link>
               </div>
             ))}
-            <div className="more-from-playlist">
-              <Link to="/">
-                <span>More videos</span>
-                <img src={arrow} alt="" />
-              </Link>
-            </div>
           </div>
         </div>
       )}
