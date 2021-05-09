@@ -1,0 +1,23 @@
+.home {
+  & .jumbo-video {
+    background-color: #3e3e3e;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 1em;
+    padding: 1em;
+
+    & .video {
+      width: 50%;
+      aspect-ratio: 16/9;
+    }
+
+    & .words {
+      width: 50%;
+
+      & p {
+        margin-top: 1em;
+      }
+    }
+  }
+}

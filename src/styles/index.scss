@@ -25,6 +25,10 @@ body {
   }
 }
 
+main {
+  padding: 3.571em 0;
+}
+
 h1,
 h2,
 h3,
@@ -36,6 +40,7 @@ h5 {
 
 p {
   margin-bottom: 1rem;
+  white-space: pre-line;
 }
 
 h1 {
@@ -71,6 +76,10 @@ a {
   }
 }
 
+iframe {
+  border: none;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -78,3 +87,4 @@ a {
 }
 
 @import '_header';
+@import '_home';

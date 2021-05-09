@@ -22,10 +22,12 @@ export const App = () => {
             <SignIn />
           </header>
 
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/:id" component={VideoPage} />
-          </Switch>
+          <main className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/:id" component={VideoPage} />
+            </Switch>
+          </main>
         </Router>
       </QueryClientProvider>
     </AuthProvider>

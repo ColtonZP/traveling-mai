@@ -19,7 +19,7 @@ export const Home = () => {
     ).then(res => res.json()),
   )
 
-  if (latestVideos.isLoading || playlists.isLoading) return <h1>Loading...</h1>
+  if (latestVideos.isLoading || playlists.isLoading) return <p>Loading...</p>
 
   if (latestVideos.error || playlists.error) {
     alert(
@@ -39,27 +39,27 @@ export const Home = () => {
   console.log('Latest:', latestVideos.data)
 
   return (
-    <div>
-      <h1>Latest Video</h1>
-
+    <div className="home">
+      <h2>Latest Video</h2>
       {latestVideos.data.items.map((video: any, index: number) =>
         index === 0 ? (
-          <>
+          <div className="jumbo-video">
             <VideoFrame
               key={video.id}
-              className={'jumbo'}
               videoId={video.snippet.resourceId.videoId}
             />
-            <h2>{video.snippet.title}</h2>
-            <p>{video.snippet.description}</p>
-          </>
+            <div className="words">
+              <h3>{video.snippet.title}</h3>
+              <p>{video.snippet.description}</p>
+            </div>
+          </div>
         ) : (
-          <>
+          <div className="video-link">
             <ThumbnailLink key={video.id} video={video} />
             <Link to={`/${video.snippet.resourceId.videoId}`}>
               <h3>{video.snippet.title}</h3>
             </Link>
-          </>
+          </div>
         ),
       )}
 

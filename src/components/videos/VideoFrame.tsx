@@ -11,7 +11,7 @@ export const VideoFrame = ({ className, videoId }: Props) => {
       src={`https://www.youtube.com/embed/${videoId}`}
       allow="fullscreen; autoplay; encrypted-media"
       title="video"
-      className={className}
+      className="video"
     />
   )
 }
