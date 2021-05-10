@@ -5,8 +5,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1em;
-    padding: 1em;
+    gap: 2em;
+    padding: 2em;
 
     @media screen and (min-width: 800px) {
       flex-direction: row;
@@ -80,6 +80,11 @@
     & img {
       width: 100%;
     }
+
+    & h4 {
+      width: 100%;
+      margin-top: 0.5em;
+    }
   }
 
   & .latest,
@@ -95,17 +100,28 @@
 
   & .playlist {
     margin: 10rem 0;
+
+    & .videos {
+      margin-top: 2rem;
+    }
   }
 
   & .playlist .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    & h2 {
+      margin: 0;
+      width: 70%;
+    }
 
     & a {
       background: var(--secondary-gray);
       border-radius: 5px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       padding: 0.5em;
 
