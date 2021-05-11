@@ -3,8 +3,6 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { VideoFrame } from './VideoFrame'
-
 export const PlaylistPage = () => {
   const { id } = useParams<{ id: string }>()
 
