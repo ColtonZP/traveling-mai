@@ -16,7 +16,6 @@ export const PlaylistPage = () => {
 
   return (
     <>
-      <h2>{}</h2>
       <div className="playlist-page">
         {videos.data.items.map((video: any, index: number) => (
           <Link
