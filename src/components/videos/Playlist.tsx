@@ -12,7 +12,7 @@ type Props = {
 export const Playlist = ({ title, playListId }: Props) => {
   const videos: any = useQuery(playListId, () =>
     fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=8&key=${process.env.REACT_APP_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=9&key=${process.env.REACT_APP_API_KEY}`,
     ).then(res => res.json()),
   )
 
@@ -24,23 +24,28 @@ export const Playlist = ({ title, playListId }: Props) => {
         <div className="playlist">
           <div className="title">
             <h2>{title}</h2>
-            <Link to="/">
-              <span>More videos</span>
-              <img src={arrow} alt="" />
-            </Link>
+            {videos.data.items.length === 9 && (
+              <Link to={`/playlist/${playListId}`}>
+                <span>More videos</span>
+                <img src={arrow} alt="" />
+              </Link>
+            )}
           </div>
 
           <div className="videos">
-            {videos.data.items.map((video: any) => (
-              <Link
-                to={`/${video.snippet.resourceId.videoId}`}
-                key={video.id}
-                className="video-link"
-              >
-                <img src={video.snippet.thumbnails.medium.url} alt="" />
-                <h4>{video.snippet.title}</h4>
-              </Link>
-            ))}
+            {videos.data.items.map(
+              (video: any, index: number) =>
+                index < 8 && (
+                  <Link
+                    to={`/${video.snippet.resourceId.videoId}`}
+                    key={video.id}
+                    className="video-link"
+                  >
+                    <img src={video.snippet.thumbnails.medium.url} alt="" />
+                    <h4>{video.snippet.title}</h4>
+                  </Link>
+                ),
+            )}
           </div>
         </div>
       )}

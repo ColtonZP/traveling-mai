@@ -6,6 +6,7 @@ import { SignIn } from './components/SignIn'
 import { AuthProvider } from './AuthContext'
 import { Home } from './components/videos/Home'
 import { VideoPage } from './components/videos/VideoPage'
+import { PlaylistPage } from './components/videos/PlaylistPage'
 
 const queryClient = new QueryClient()
 
@@ -25,6 +26,7 @@ export const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/:id" component={VideoPage} />
+              <Route exact path="/playlist/:id" component={PlaylistPage} />
             </Switch>
           </main>
         </Router>

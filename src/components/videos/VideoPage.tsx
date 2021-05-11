@@ -15,6 +15,8 @@ export const VideoPage = () => {
 
   if (video.isLoading) return <h1>Loading...</h1>
 
+  console.log(video)
+
   return (
     <div>
       <VideoFrame key={id} videoId={video.data.items[0].id} />
