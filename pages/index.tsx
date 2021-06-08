@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
 // import { AuthProvider } from '../components/AuthContext'
-import { SignIn } from '../components/SignIn'
+import { SignIn } from '../components/auth/SignIn'
+import { Playlist } from '../components/videos/Playlist'
+import { VideoFrame } from '../components/videos/VideoFrame'
 // import { Home } from '../components/videos/Home'
 // import { PlaylistPage } from '../components/videos/PlaylistPage'
 // import { VideoPage } from '../components/videos/VideoPage'
 import { data as latestData } from '../temp/getLatest'
+import { data as playlistsData } from '../temp/getPlaylists'
 
 // search https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${}&q=${}&type=video&key=[YOUR_API_KEY]
 
@@ -25,10 +28,10 @@ export default function App() {
         <div className="home">
           <h2>Latest Videos</h2>
           <div className="jumbo-video">
-            {/* <VideoFrame
-          key={latestVideo?.id}
-          videoId={latestVideo?.snippet.resourceId.videoId}
-        /> */}
+            <VideoFrame
+              key={latestVideo?.id}
+              videoId={latestVideo?.snippet.resourceId.videoId}
+            />
             <div className="words">
               <h3>{latestVideo?.snippet.title}</h3>
               <p>
@@ -57,13 +60,13 @@ export default function App() {
             )}
           </div>
 
-          {/* {playlists.data.items.map((playlist: any) => (
-        <Playlist
-          key={playlist.id}
-          title={playlist.snippet.title}
-          playListId={playlist.id}
-        />
-      ))} */}
+          {playlistsData.items.map((playlist: any) => (
+            <Playlist
+              key={playlist.id}
+              title={playlist.snippet.title}
+              playListId={playlist.id}
+            />
+          ))}
         </div>
       </main>
     </>

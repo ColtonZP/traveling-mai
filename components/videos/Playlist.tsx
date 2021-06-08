@@ -1,8 +1,5 @@
-import React from 'react'
-import { useQuery } from 'react-query'
-import { Link } from 'react-router-dom'
-
-import arrow from '../../images/arrow.svg'
+import arrow from '../../public/arrow.svg'
+import { data as videos } from '../../temp/getPlaylist'
 
 type Props = {
   title: string
@@ -10,40 +7,34 @@ type Props = {
 }
 
 export const Playlist = ({ title, playListId }: Props) => {
-  const videos: any = useQuery(playListId, () =>
-    fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=9&key=${process.env.REACT_APP_API_KEY}`,
-    ).then(res => res.json()),
-  )
-
-  if (videos.isLoading) return <p>loading video...</p>
-
+  // get playlist info
+  console.log(videos.items.length)
   return (
     <>
-      {videos.data.items.length >= 1 && (
+      {videos.items.length >= 1 && (
         <div className="playlist">
           <div className="title">
             <h2>{title}</h2>
-            {videos.data.items.length === 9 && (
-              <Link to={`/playlist/${playListId}`}>
+            {videos.items.length >= 9 && (
+              <a href={`/playlist/${playListId}`}>
                 <span>More videos</span>
                 <img src={arrow} alt="" />
-              </Link>
+              </a>
             )}
           </div>
 
           <div className="videos">
-            {videos.data.items.map(
+            {videos.items.map(
               (video: any, index: number) =>
                 index < 8 && (
-                  <Link
-                    to={`/${video.snippet.resourceId.videoId}`}
+                  <a
+                    href={`/video/${video.snippet.resourceId.videoId}`}
                     key={video.id}
                     className="video-link"
                   >
-                    <img src={video.snippet.thumbnails.medium.url} alt="" />
+                    <img src={video.snippet.thumbnails.maxres.url} alt="" />
                     <h4>{video.snippet.title}</h4>
-                  </Link>
+                  </a>
                 ),
             )}
           </div>
