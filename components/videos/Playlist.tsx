@@ -7,8 +7,6 @@ type Props = {
 }
 
 export const Playlist = ({ title, playListId }: Props) => {
-  // get playlist info
-  console.log(videos.items.length)
   return (
     <>
       {videos.items.length >= 1 && (

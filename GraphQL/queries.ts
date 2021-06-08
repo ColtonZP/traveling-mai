@@ -22,6 +22,19 @@ export const GET_LATEST = gql`
   }
 `
 
+export const GET_PLAYLISTS = gql`
+  query playlists($channelId: String!, $key: String!) {
+    getPlaylists(channelId: $channelId, key: $key) {
+      items {
+        id
+        snippet {
+          title
+        }
+      }
+    }
+  }
+`
+
 export const GET_PLAYLIST = gql`
   query playlist($playlistId: String!, $key: String!) {
     getPlaylist(playlistId: $playlistId, key: $key) {
@@ -44,21 +57,8 @@ export const GET_PLAYLIST = gql`
   }
 `
 
-export const GET_PLAYLISTS = gql`
-  query playlists($channelId: String!, $key: string!) {
-    getPlaylists(channelId: $channelId, key: $key) {
-      items {
-        id
-        snippet {
-          title
-        }
-      }
-    }
-  }
-`
-
 export const GET_VIDEO = gql`
-  query video($id: String!, $key: string!) {
+  query video($id: String!, $key: String!) {
     getVideo(id: $id, key: $key) {
       id
     }
