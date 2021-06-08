@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 // import firebase from 'firebase/app'
 
-import { auth, googleAuth } from '../firebase'
+import { auth, googleAuth } from '../lib/firebase'
 import { User } from '../types/user'
 
 const defaultUser: User = {

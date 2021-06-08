@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // import { AuthProvider } from '../components/AuthContext'
-// import { SignIn } from '../components/SignIn'
+import { SignIn } from '../components/SignIn'
 // import { Home } from '../components/videos/Home'
 // import { PlaylistPage } from '../components/videos/PlaylistPage'
 // import { VideoPage } from '../components/videos/VideoPage'
@@ -19,7 +19,7 @@ export default function App() {
         <a href="/">
           <h1>Traveling Mai</h1>
         </a>
-        {/* <SignIn /> */}
+        <SignIn />
       </header>
       <main className="container">
         <div className="home">
