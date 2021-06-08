@@ -1,25 +1,16 @@
 import { LatestVideos } from '../components/home/latestVideos'
 import { Playlists } from '../components/home/playLists'
-import { Playlist } from '../components/videos/Playlist'
-import { VideoFrame } from '../components/videos/VideoFrame'
-import { GET_LATEST, GET_PLAYLISTS } from '../GraphQL/queries'
+import { GET_LATEST, GET_PLAYLIST, GET_PLAYLISTS } from '../GraphQL/queries'
 import { client } from './_app'
 
 // search https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${}&q=${}&type=video&key=[YOUR_API_KEY]
 
-export default function Home({ latestData, playlistsData }) {
+export default function Home({ latestData, playlistsData, playlistData }) {
   return (
     <main className="container">
       <div className="home">
         <LatestVideos data={latestData} />
-        <Playlists data={playlistsData} />
-        {/* {playlistsData.items.map((playlist: any) => (
-            <Playlist
-              key={playlist.id}
-              title={playlist.snippet.title}
-              playListId={playlist.id}
-            />
-          ))} */}
+        <Playlists playlistsData={playlistsData} playlistData={playlistData} />
       </div>
     </main>
   )
@@ -34,7 +25,9 @@ export async function getServerSideProps() {
         key: process.env.API_KEY,
       },
     })
-    .then(res => res.data.getLatest)
+    .then(res => !res.loading && res.data.getLatest)
+
+  const playlistData = []
 
   const playlistsData = await client
     .query({
@@ -44,7 +37,41 @@ export async function getServerSideProps() {
         key: process.env.API_KEY,
       },
     })
-    .then(res => res.data.getPlaylists)
+    .then(async res => !res.loading && res.data.getPlaylists)
+    .catch(res => console.log('failed to load playlists', res))
 
-  return { props: { latestData, playlistsData } }
+  // ! get video title to be SSR, currently unreliable below
+  // const playlistsData = await client
+  //   .query({
+  //     query: GET_PLAYLISTS,
+  //     variables: {
+  //       channelId: process.env.CHANNEL_ID,
+  //       key: process.env.API_KEY,
+  //     },
+  //   })
+  //   .then(async res => {
+  //     if (!res.loading) {
+  //       res.data.getPlaylists.items.map(async playlist => {
+  //         playlist &&
+  //           (await client
+  //             .query({
+  //               query: GET_PLAYLIST,
+  //               variables: {
+  //                 playlistId: playlist.id,
+  //                 key: process.env.API_KEY,
+  //               },
+  //             })
+  //             .then(
+  //               res => !res.loading && playlistData.push(res.data.getPlaylist),
+  //             )
+  //             .catch(res =>
+  //               console.log('failed to load playlist details', res),
+  //             ))
+  //       })
+  //       return res.data.getPlaylists
+  //     }
+  //   })
+  //   .catch(res => console.log('failed to load playlists', res))
+
+  return { props: { latestData, playlistsData, playlistData } }
 }

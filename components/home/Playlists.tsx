@@ -1,13 +1,14 @@
 import { Playlist } from '../videos/Playlist'
 
-export const Playlists = ({ data }) => {
+export const Playlists = ({ playlistsData, playlistData }) => {
   return (
     <>
-      {data.items.map((playlist: any) => (
+      {playlistsData.items.map((playlist: any, index: number) => (
         <Playlist
           key={playlist.id}
           title={playlist.snippet.title}
           playListId={playlist.id}
+          playlistData={playlistData[index]}
         />
       ))}
     </>

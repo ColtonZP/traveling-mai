@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { GET_LATEST } from '../../GraphQL/queries'
-import { client } from '../../pages/_app'
 import { VideoFrame } from '../videos/VideoFrame'
 
 export const LatestVideos = ({ data }) => {
@@ -33,7 +31,7 @@ export const LatestVideos = ({ data }) => {
           (video: any, index: number) =>
             index > 0 && (
               <a
-                href={`/${video.snippet.resourceId.videoId}`}
+                href={`/video/${video.snippet.resourceId.videoId}`}
                 className="video-link"
                 key={video.id}
               >

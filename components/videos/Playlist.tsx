@@ -4,16 +4,19 @@ import { data as videos } from '../../temp/getPlaylist'
 type Props = {
   title: string
   playListId: string
+  playlistData: any
 }
 
-export const Playlist = ({ title, playListId }: Props) => {
+export const Playlist = ({ title, playListId, playlistData }: Props) => {
+  playlistData = videos
+  // add videos query
   return (
     <>
-      {videos.items.length >= 1 && (
+      {playlistData.items.length >= 1 && (
         <div className="playlist">
           <div className="title">
             <h2>{title}</h2>
-            {videos.items.length >= 9 && (
+            {playlistData.items.length >= 9 && (
               <a href={`/playlist/${playListId}`}>
                 <span>More videos</span>
                 <img src={arrow} alt="" />
@@ -22,7 +25,7 @@ export const Playlist = ({ title, playListId }: Props) => {
           </div>
 
           <div className="videos">
-            {videos.items.map(
+            {playlistData.items.map(
               (video: any, index: number) =>
                 index < 8 && (
                   <a
