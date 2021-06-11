@@ -6,7 +6,7 @@ import { SignIn } from '../components/auth/SignIn'
 import '../styles/index.scss'
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
+  uri: process.env.GRAPHQL_SERVER,
   cache: new InMemoryCache(),
 })
 
