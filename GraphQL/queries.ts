@@ -60,7 +60,21 @@ export const GET_PLAYLIST = gql`
 export const GET_VIDEO = gql`
   query video($id: String!, $key: String!) {
     getVideo(id: $id, key: $key) {
-      id
+      items {
+        id
+        snippet {
+          title
+          description
+          thumbnails {
+            maxres {
+              url
+            }
+          }
+          resourceId {
+            videoId
+          }
+        }
+      }
     }
   }
 `
