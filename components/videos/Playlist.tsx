@@ -1,22 +1,30 @@
+import { useQuery } from '@apollo/client'
+
+import { GET_PLAYLIST } from '../../GraphQL/queries'
 import arrow from '../../public/arrow.svg'
 import { data as videos } from '../../temp/getPlaylist'
 
 type Props = {
   title: string
   playListId: string
-  playlistData: any
 }
 
-export const Playlist = ({ title, playListId, playlistData }: Props) => {
-  playlistData = videos
-  // add videos query
+export const Playlist = ({ title, playListId }: Props) => {
+  const { loading, data } = useQuery(GET_PLAYLIST, {
+    variables: { playlistId: playListId, key: process.env.API_KEY },
+  })
+
+  console.log(data)
+
+  if (loading) return <h1>LOADING</h1>
+
   return (
     <>
-      {playlistData.items.length >= 1 && (
+      {data.getPlaylist.items.length >= 1 && (
         <div className="playlist">
           <div className="title">
             <h2>{title}</h2>
-            {playlistData.items.length >= 9 && (
+            {data.getPlaylist.items.length >= 9 && (
               <a href={`/playlist/${playListId}`}>
                 <span>More videos</span>
                 <img src={arrow} alt="" />
@@ -25,7 +33,7 @@ export const Playlist = ({ title, playListId, playlistData }: Props) => {
           </div>
 
           <div className="videos">
-            {playlistData.items.map(
+            {data.getPlaylist.items.map(
               (video: any, index: number) =>
                 index < 8 && (
                   <a
