@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
+import Image from 'next/image'
 
 import { GET_PLAYLIST } from '../../GraphQL/queries'
-import arrow from '../../public/arrow.svg'
-import { data as videos } from '../../temp/getPlaylist'
 
 type Props = {
   title: string
@@ -27,7 +26,13 @@ export const Playlist = ({ title, playListId }: Props) => {
             {data.getPlaylist.items.length >= 9 && (
               <a href={`/playlist/${playListId}`}>
                 <span>More videos</span>
-                <img src={arrow} alt="" />
+                <Image
+                  src="/arrow.svg"
+                  alt="arrow"
+                  height="30px"
+                  width="40px"
+                  className="arrow"
+                />
               </a>
             )}
           </div>

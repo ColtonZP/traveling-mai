@@ -27,8 +27,6 @@ export async function getServerSideProps() {
     })
     .then(res => !res.loading && res.data.getLatest)
 
-  const playlistData = []
-
   const playlistsData = await client
     .query({
       query: GET_PLAYLISTS,
@@ -39,6 +37,17 @@ export async function getServerSideProps() {
     })
     .then(async res => !res.loading && res.data.getPlaylists)
     .catch(res => console.log('failed to load playlists', res))
+
+  // const playlistData = await client
+  //   .query({
+  //     query: GET_PLAYLISTS,
+  //     variables: {
+  //       channelId: process.env.CHANNEL_ID,
+  //       key: process.env.API_KEY,
+  //     },
+  //   })
+  //   .then(async res => !res.loading && [...playlistData, res.data.getPlaylists])
+  //   .catch(res => console.log('failed to load playlists', res))
 
   // ! get video title to be SSR, currently unreliable below
   // const playlistsData = await client
@@ -74,5 +83,5 @@ export async function getServerSideProps() {
   //   })
   //   .catch(res => console.log('failed to load playlists', res))
 
-  return { props: { latestData, playlistsData, playlistData } }
+  return { props: { latestData, playlistsData } }
 }
