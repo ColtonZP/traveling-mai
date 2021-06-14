@@ -3,26 +3,16 @@ import { Playlists } from '../components/home/Playlists'
 import { GET_LATEST, GET_PLAYLISTS } from '../GraphQL/queries'
 import { client } from './_app'
 
-import Head from 'next/head'
-
 // search https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=${}&q=${}&type=video&key=[YOUR_API_KEY]
 
 export default function Home({ latestData, playlistsData }) {
   return (
-    <>
-      <Head>
-        <meta
-          name="google-site-verification"
-          content="MP-dP9mdVxusdz3LHLPYMAKOOzpULP7IVVjvKpXD9_4"
-        />
-      </Head>
-      <main className="container">
-        <div className="home">
-          <LatestVideos data={latestData} />
-          <Playlists playlistsData={playlistsData} />
-        </div>
-      </main>
-    </>
+    <main className="container">
+      <div className="home">
+        <LatestVideos data={latestData} />
+        <Playlists playlistsData={playlistsData} />
+      </div>
+    </main>
   )
 }
 
