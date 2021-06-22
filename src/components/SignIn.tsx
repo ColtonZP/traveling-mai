@@ -1,16 +1,16 @@
-import { useAuth } from './AuthContext'
+import { useAuth } from '../AuthContext'
 
 export const SignIn = () => {
   const { user, signIn, signOut } = useAuth()
 
   if (user.displayName) {
     return (
-      <>
-        <span className="user">Signed in as {user.displayName}</span>
+      <div className="user-options">
+        <img src={user.photoURL || ''} className="user-photo" />
         <button className="sign-out" onClick={() => signOut()}>
           Sign out
         </button>
-      </>
+      </div>
     )
   }
 

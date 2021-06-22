@@ -1,6 +1,10 @@
 import { Playlist } from '../videos/Playlist'
 
-export const Playlists = ({ playlistsData }) => {
+export const Playlists = () => {
+  const playlistsData = {
+    items: [],
+  }
+
   return (
     <>
       {playlistsData.items.map((playlist: any, index: number) => (

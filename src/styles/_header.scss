@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & .sing-in, & .sign-out {
+    padding: .2em .4em;
+  }
+
+  & .user-photo {
+    height: 3.125em;
+    border-radius: 50%;
+  }
+}

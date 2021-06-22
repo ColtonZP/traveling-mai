@@ -1,10 +1,34 @@
 import { useState } from 'react'
 
+import { useQuery } from '@apollo/client'
+
+import { GET_LATEST } from '../../GraphQL/queries'
 import { VideoFrame } from '../videos/VideoFrame'
 
-export const LatestVideos = ({ data }) => {
+export const LatestVideos = () => {
   const [showDescription, updateDesc] = useState<boolean>(false)
-  const latestVideo: any = data.items[0]
+  const { loading, data } = useQuery(GET_LATEST, {
+    variables: {
+      playlistId: 'UUcUvSSGBLtKGtk0ai9Urncw',
+      key: 'AIzaSyBFZk8PJXSdhfu4pA5GKKwIK6E7UYuxAFc',
+    },
+  })
+
+  const latestVideo: any = data?.getLatest?.items[0]
+
+  if (loading)
+    return (
+      <div className="home">
+        <h2>Loading...</h2>
+        <div className="jumbo-video loading">
+          <div className="video" />
+          <div className="words">
+            <h3 />
+            <p />
+          </div>
+        </div>
+      </div>
+    )
 
   return (
     <>
@@ -27,7 +51,7 @@ export const LatestVideos = ({ data }) => {
         </div>
       </div>
       <div className="latest">
-        {data.items.map(
+        {data.getLatest.items.map(
           (video: any, index: number) =>
             index > 0 && (
               <a

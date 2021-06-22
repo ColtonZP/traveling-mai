@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 // import firebase from 'firebase/app'
 
-import { auth, googleAuth } from '../../lib/firebase'
-import { User } from '../../types/user'
+import { auth, googleAuth } from './firebase'
+import { User } from './types/user'
 
 const defaultUser: User = {
   displayName: null,
@@ -42,19 +42,18 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   function signIn() {
-    return auth
-      .signInWithPopup(googleAuth)
-      .then(res => {
-        // const credential = res.credential as firebase.auth.OAuthCredential
-        // const token = credential!.accessToken
-      })
-      .catch(error => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        // const email = error.email
-        // const credential = error.credential
-        alert(`Error signing in error code ${errorCode}. ${errorMessage}`)
-      })
+    return auth.signInWithPopup(googleAuth)
+    // .then(res => {
+    //   // const credential = res.credential as firebase.auth.OAuthCredential
+    //   // const token = credential!.accessToken
+    // })
+    // .catch(error => {
+    //   const errorCode = error.code
+    //   const errorMessage = error.message
+    //   // const email = error.email
+    //   // const credential = error.credential
+    //   alert(`Error signing in error code ${errorCode}. ${errorMessage}`)
+    // })
   }
 
   function signOut() {
