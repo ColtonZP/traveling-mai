@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { AuthProvider } from './AuthContext'
 import { Home } from './components/Home'
 import { PlaylistPage } from './components/pages/PlaylistPage'
+import VideoPage from './components/pages/VideoPage'
 import { SignIn } from './components/SignIn'
 
 export const client = new ApolloClient({
@@ -26,7 +27,7 @@ export function App() {
                     <main className="container">
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            {/* <Route exact path="/:id" component={VideoPage} /> */}
+                            <Route exact path="/video/:id" component={VideoPage} />
                             <Route exact path="/playlist/:id" component={PlaylistPage} />
                         </Switch>
                     </main>
