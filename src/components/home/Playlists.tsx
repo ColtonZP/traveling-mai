@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { useQuery } from '@apollo/client'
 
 import { key } from '../../firebase'
@@ -14,8 +12,6 @@ export const Playlists = () => {
             key: key,
         },
     })
-
-    console.log({ playlist: data })
 
     if (loading)
         return (

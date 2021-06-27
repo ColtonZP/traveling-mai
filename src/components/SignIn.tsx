@@ -6,7 +6,7 @@ export const SignIn = () => {
     if (user.displayName) {
         return (
             <div className="user-options">
-                <img src={user.photoURL || ''} className="user-photo" />
+                <img alt="user photo" src={user.photoURL || ''} className="user-photo" />
                 <button className="sign-out" onClick={() => signOut()}>
                     Sign out
                 </button>
