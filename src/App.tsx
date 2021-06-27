@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import { AuthProvider } from './AuthContext'
 import { Home } from './components/Home'
+import { PlaylistPage } from './components/pages/PlaylistPage'
 import { SignIn } from './components/SignIn'
 
 export const client = new ApolloClient({
@@ -25,8 +26,8 @@ export function App() {
                     <main className="container">
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            {/* <Route exact path="/:id" component={VideoPage} />
-                            <Route exact path="/playlist/:id" component={PlaylistPage} /> */}
+                            {/* <Route exact path="/:id" component={VideoPage} /> */}
+                            <Route exact path="/playlist/:id" component={PlaylistPage} />
                         </Switch>
                     </main>
                 </Router>
@@ -39,4 +40,5 @@ export function App() {
     Todo Videos page
     Todo Plylist page
     Todo remove 'any' types
+    Todo proper loading components for playlist and playlistpage
 */
