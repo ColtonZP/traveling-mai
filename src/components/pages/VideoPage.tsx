@@ -18,10 +18,10 @@ export default function Video() {
     if (loading) return <h1>Loading...</h1>
 
     return (
-        <main className="container">
+        <div className="video-page">
             <VideoFrame key={data.getVideo.id} videoId={data.getVideo.items[0].id} />
             <h2>{data.getVideo.items[0].snippet.title}</h2>
             <p>{data.getVideo.items[0].snippet.description}</p>
-        </main>
+        </div>
     )
 }
