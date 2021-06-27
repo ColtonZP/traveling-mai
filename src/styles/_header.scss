@@ -2,6 +2,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 2em auto !important;
 
   & .sing-in, & .sign-out {
     padding: .2em .4em;

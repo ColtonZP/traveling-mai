@@ -28,7 +28,7 @@ export const Playlist = ({ title, playListId }: Props) => {
                 <div className="playlist">
                     <div className="title">
                         <h2>{title}</h2>
-                        {data.getPlaylist.items.length === 9 && (
+                        {data.getPlaylist.items.length >= 8 && (
                             <Link to={`/playlist/${playListId}`}>
                                 <span>More videos</span>
                                 <img src={arrow} alt="" />
