@@ -10,8 +10,8 @@ export const LatestVideos = () => {
     const [showDescription, updateDesc] = useState<boolean>(false)
     const { loading, data } = useQuery(GET_LATEST, {
         variables: {
-            playlistId: key,
-            key: 'AIzaSyBFZk8PJXSdhfu4pA5GKKwIK6E7UYuxAFc',
+            playlistId: 'UUcUvSSGBLtKGtk0ai9Urncw',
+            key: key,
         },
     })
 
@@ -35,19 +35,13 @@ export const LatestVideos = () => {
         <>
             <h2>Latest Videos</h2>
             <div className="jumbo-video">
-                <VideoFrame
-                    key={latestVideo?.id}
-                    videoId={latestVideo?.snippet.resourceId.videoId}
-                />
+                <VideoFrame key={latestVideo?.id} videoId={latestVideo?.snippet.resourceId.videoId} />
                 <div className="words">
                     <h3>{latestVideo?.snippet.title}</h3>
                     <p>
                         {showDescription
                             ? latestVideo?.snippet.description
-                            : latestVideo?.snippet.description.substring(
-                                  0,
-                                  140,
-                              ) + '...'}
+                            : latestVideo?.snippet.description.substring(0, 140) + '...'}
                     </p>
                     <button onClick={() => updateDesc(!showDescription)}>
                         {showDescription ? 'Show less' : 'Show more'}
@@ -55,7 +49,7 @@ export const LatestVideos = () => {
                 </div>
             </div>
             <div className="latest">
-                {data.getLatest.items.map(
+                {data?.getLatest.items.map(
                     (video: any, index: number) =>
                         index > 0 && (
                             <a
@@ -63,10 +57,7 @@ export const LatestVideos = () => {
                                 className="video-link"
                                 key={video.id}
                             >
-                                <img
-                                    src={video.snippet.thumbnails.maxres.url}
-                                    alt=""
-                                />
+                                <img src={video.snippet.thumbnails.maxres.url} alt="" />
                                 <h4>{video.snippet.title}</h4>
                             </a>
                         ),

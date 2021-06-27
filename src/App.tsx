@@ -34,3 +34,9 @@ export function App() {
         </ApolloProvider>
     )
 }
+
+/*
+    Todo Videos page
+    Todo Plylist page
+    Todo remove 'any' types
+*/

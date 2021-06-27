@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Link } from 'react-router-dom'
 
+import { key } from '../../firebase'
 import { GET_PLAYLIST } from '../../GraphQL/queries'
 import arrow from '../../images/arrow.svg'
 
@@ -12,20 +13,22 @@ type Props = {
 export const Playlist = ({ title, playListId }: Props) => {
     const { loading, data } = useQuery(GET_PLAYLIST, {
         variables: {
-            channelId: 'UCcUvSSGBLtKGtk0ai9Urncw',
-            key: 'AIzaSyBFZk8PJXSdhfu4pA5GKKwIK6E7UYuxAFc',
+            playlistId: playListId,
+            key: key,
         },
     })
 
-    if (loading) return <p>loading video...</p>
+    console.log({ playlist: data, playlistLoading: loading })
+
+    if (loading) return <p>loading playlist...</p>
 
     return (
         <>
-            {data.items.length >= 1 && (
+            {data.getPlaylist.items.length >= 1 && (
                 <div className="playlist">
                     <div className="title">
                         <h2>{title}</h2>
-                        {data.items.length === 9 && (
+                        {data.getPlaylist.items.length === 9 && (
                             <Link to={`/playlist/${playListId}`}>
                                 <span>More videos</span>
                                 <img src={arrow} alt="" />
@@ -34,7 +37,7 @@ export const Playlist = ({ title, playListId }: Props) => {
                     </div>
 
                     <div className="videos">
-                        {data.items.map(
+                        {data.getPlaylist.items.map(
                             (video: any, index: number) =>
                                 index < 8 && (
                                     <Link
@@ -42,13 +45,7 @@ export const Playlist = ({ title, playListId }: Props) => {
                                         key={video.id}
                                         className="video-link"
                                     >
-                                        <img
-                                            src={
-                                                video.snippet.thumbnails.medium
-                                                    .url
-                                            }
-                                            alt=""
-                                        />
+                                        <img src={video.snippet.thumbnails.maxres.url} alt="" />
                                         <h4>{video.snippet.title}</h4>
                                     </Link>
                                 ),
