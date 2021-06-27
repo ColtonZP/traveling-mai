@@ -6,31 +6,31 @@ import { Home } from './components/Home'
 import { SignIn } from './components/SignIn'
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache(),
+    uri: 'http://localhost:4000',
+    cache: new InMemoryCache(),
 })
 
 export function App() {
-  return (
-    <ApolloProvider client={client}>
-      <AuthProvider>
-        <Router>
-          <header className="container">
-            <Link to="/">
-              <h1>Traveling Mai</h1>
-            </Link>
-            <SignIn />
-          </header>
+    return (
+        <ApolloProvider client={client}>
+            <AuthProvider>
+                <Router>
+                    <header className="container">
+                        <Link to="/">
+                            <h1>Traveling Mai</h1>
+                        </Link>
+                        <SignIn />
+                    </header>
 
-          <main className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              {/* <Route exact path="/:id" component={VideoPage} />
-            <Route exact path="/playlist/:id" component={PlaylistPage} /> */}
-            </Switch>
-          </main>
-        </Router>
-      </AuthProvider>
-    </ApolloProvider>
-  )
+                    <main className="container">
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            {/* <Route exact path="/:id" component={VideoPage} />
+                            <Route exact path="/playlist/:id" component={PlaylistPage} /> */}
+                        </Switch>
+                    </main>
+                </Router>
+            </AuthProvider>
+        </ApolloProvider>
+    )
 }
