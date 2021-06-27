@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 
 import { key } from '../../firebase'
 import { GET_LATEST } from '../../GraphQL/queries'
+import { Video } from '../../types/Video'
 import { VideoFrame } from '../videos/VideoFrame'
 
 export const LatestVideos = () => {
@@ -15,7 +16,7 @@ export const LatestVideos = () => {
         },
     })
 
-    const latestVideo: any = data?.getLatest?.items[0]
+    const latestVideo: Video = data?.getLatest?.items[0]
 
     if (loading)
         return (
@@ -40,8 +41,8 @@ export const LatestVideos = () => {
                     <h3>{latestVideo?.snippet.title}</h3>
                     <p>
                         {showDescription
-                            ? latestVideo?.snippet.description
-                            : latestVideo?.snippet.description.substring(0, 140) + '...'}
+                            ? latestVideo?.snippet?.description
+                            : latestVideo?.snippet?.description?.substring(0, 140) + '...'}
                     </p>
                     <button onClick={() => updateDesc(!showDescription)}>
                         {showDescription ? 'Show less' : 'Show more'}
@@ -50,7 +51,7 @@ export const LatestVideos = () => {
             </div>
             <div className="latest">
                 {data?.getLatest.items.map(
-                    (video: any, index: number) =>
+                    (video: Video, index: number) =>
                         index > 0 && (
                             <a
                                 href={`/video/${video.snippet.resourceId.videoId}`}

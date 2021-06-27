@@ -8,7 +8,7 @@ import VideoPage from './components/pages/VideoPage'
 import { SignIn } from './components/SignIn'
 
 export const client = new ApolloClient({
-    uri: 'http://localhost:4000',
+    uri: 'http://traveling-mai.wm.r.appspot.com/',
     cache: new InMemoryCache(),
 })
 
@@ -36,10 +36,3 @@ export function App() {
         </ApolloProvider>
     )
 }
-
-/*
-    Todo Videos page
-    Todo Plylist page
-    Todo remove 'any' types
-    Todo proper loading components for playlist and playlistpage
-*/

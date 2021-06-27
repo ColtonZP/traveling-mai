@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { key } from '../../firebase'
 import { GET_PLAYLIST } from '../../GraphQL/queries'
+import { Video } from '../../types/Video'
 
 export const PlaylistPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -20,7 +21,7 @@ export const PlaylistPage = () => {
     return (
         <>
             <div className="playlist-page">
-                {data.getPlaylist.items.map((video: any) => (
+                {data.getPlaylist.items.map((video: Video) => (
                     <Link to={`/${video.snippet.resourceId.videoId}`} key={video.id} className="video-link">
                         <img src={video.snippet.thumbnails.maxres.url} alt="" />
                         <h4>{video.snippet.title}</h4>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { key } from '../../firebase'
 import { GET_PLAYLIST } from '../../GraphQL/queries'
 import arrow from '../../images/arrow.svg'
+import { Video } from '../../types/Video'
 
 type Props = {
     title: string
@@ -38,7 +39,7 @@ export const Playlist = ({ title, playListId }: Props) => {
 
                     <div className="videos">
                         {data.getPlaylist.items.map(
-                            (video: any, index: number) =>
+                            (video: Video, index: number) =>
                                 index < 8 && (
                                     <Link
                                         to={`/${video.snippet.resourceId.videoId}`}
