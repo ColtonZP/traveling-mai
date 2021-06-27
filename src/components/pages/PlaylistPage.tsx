@@ -20,7 +20,7 @@ export const PlaylistPage = () => {
     return (
         <>
             <div className="playlist-page">
-                {data.getPlaylist.items.map((video: any, index: number) => (
+                {data.getPlaylist.items.map((video: any) => (
                     <Link to={`/${video.snippet.resourceId.videoId}`} key={video.id} className="video-link">
                         <img src={video.snippet.thumbnails.maxres.url} alt="" />
                         <h4>{video.snippet.title}</h4>

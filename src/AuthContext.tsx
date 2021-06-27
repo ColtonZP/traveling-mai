@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-// import firebase from 'firebase/app'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
+// import firebase from 'firebase/app'
 import { auth, googleAuth } from './firebase'
 import { User } from './types/user'
 
@@ -25,7 +25,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
+        return auth.onAuthStateChanged(user => {
             if (user) {
                 setUser({
                     displayName: user.displayName,
@@ -37,8 +37,6 @@ export const AuthProvider: React.FC = ({ children }) => {
             }
             setLoading(false)
         })
-
-        return unsubscribe
     }, [])
 
     function signIn() {
