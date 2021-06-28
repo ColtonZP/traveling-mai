@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 
-import { key } from '../../firebase'
+import { channelId, key } from '../../firebase'
 import { GET_PLAYLISTS } from '../../GraphQL/queries'
 import { PlaylistPreview } from '../../types/PlaylistPreview'
 import { Playlist } from '../videos/Playlist'
@@ -8,24 +8,12 @@ import { Playlist } from '../videos/Playlist'
 export const Playlists = () => {
     const { loading, data } = useQuery(GET_PLAYLISTS, {
         variables: {
-            channelId: 'UCcUvSSGBLtKGtk0ai9Urncw',
+            channelId: channelId,
             key: key,
         },
     })
 
-    if (loading)
-        return (
-            <div className="home">
-                <h2>Loading...</h2>
-                <div className="jumbo-video loading">
-                    <div className="video" />
-                    <div className="words">
-                        <h3 />
-                        <p />
-                    </div>
-                </div>
-            </div>
-        )
+    if (loading) return <h1>Loading...</h1>
 
     return (
         <>

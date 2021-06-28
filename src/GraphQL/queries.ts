@@ -29,6 +29,11 @@ export const GET_PLAYLISTS = gql`
                 id
                 snippet {
                     title
+                    thumbnails {
+                        maxres {
+                            url
+                        }
+                    }
                 }
             }
         }

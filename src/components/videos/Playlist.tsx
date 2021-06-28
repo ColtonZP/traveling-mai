@@ -40,11 +40,11 @@ export const Playlist = ({ title, playListId }: Props) => {
                             (video: Video, index: number) =>
                                 index < 8 && (
                                     <Link
-                                        to={`/${video.snippet.resourceId.videoId}`}
+                                        to={`/video/${video.snippet.resourceId.videoId}`}
                                         key={video.id}
                                         className="video-link"
                                     >
-                                        <img src={video.snippet.thumbnails.maxres.url} alt="" />
+                                        <img src={video.snippet.thumbnails.maxres?.url} alt="" />
                                         <h4>{video.snippet.title}</h4>
                                     </Link>
                                 ),
