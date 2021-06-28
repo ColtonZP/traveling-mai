@@ -37,3 +37,7 @@ export function App() {
         </ApolloProvider>
     )
 }
+
+/*
+    Todo: search bar
+ */

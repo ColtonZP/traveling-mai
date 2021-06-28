@@ -37,8 +37,8 @@ export const Playlist = ({ title, playListId }: Props) => {
 
                     <div className="videos">
                         {data.getPlaylist.items.map(
-                            (video: Video, index: number) =>
-                                index < 8 && (
+                            (video: Video) =>
+                                video.snippet.title !== 'Private video' && (
                                     <Link
                                         to={`/video/${video.snippet.resourceId.videoId}`}
                                         key={video.id}
