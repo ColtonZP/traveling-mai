@@ -19,8 +19,6 @@ export const Playlist = ({ title, playListId }: Props) => {
         },
     })
 
-    console.log({ playlist: data, playlistLoading: loading })
-
     if (loading) return <p>loading playlist...</p>
 
     return (
