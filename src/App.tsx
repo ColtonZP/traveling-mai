@@ -20,8 +20,9 @@ export function App() {
                     <header className="container">
                         <Link to="/">
                             <h1>Traveling Mai</h1>
+                            <p className="tag-line">Lets travel the world</p>
                         </Link>
-                        <SignIn />
+                        {/* <SignIn /> */}
                     </header>
 
                     <main className="container">

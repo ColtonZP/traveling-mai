@@ -1,4 +1,5 @@
 import { useAuth } from '../AuthContext'
+import google from '../images/Google.svg'
 
 export const SignIn = () => {
     const { user, signIn, signOut } = useAuth()
@@ -16,7 +17,8 @@ export const SignIn = () => {
 
     return (
         <button className="sign-in" onClick={() => signIn()}>
-            Sign in with Google
+            <img src={google} alt="google" />
+            Sign in
         </button>
     )
 }

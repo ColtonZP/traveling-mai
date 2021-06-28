@@ -4,12 +4,7 @@ header {
   justify-content: space-between;
   margin: 2em auto !important;
 
-  & .sing-in, & .sign-out {
-    padding: .2em .4em;
-  }
-
-  & .user-photo {
-    height: 3.125em;
-    border-radius: 50%;
+  & .tag-line {
+    font-size: 1.999rem;
   }
 }
