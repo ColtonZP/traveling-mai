@@ -16,7 +16,7 @@ export const PlaylistPage = () => {
         },
     })
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <h2>Loading Playlist</h2>
 
     return (
         <div className="playlist-page">

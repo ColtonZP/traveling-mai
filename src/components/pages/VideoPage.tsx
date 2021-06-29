@@ -16,7 +16,7 @@ export default function Video() {
         },
     })
 
-    if (loading) return <h2>Loading...</h2>
+    if (loading) return <h2>Loading Video</h2>
 
     return (
         <div className="video-page">

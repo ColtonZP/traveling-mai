@@ -8,8 +8,8 @@ import VideoPage from './components/pages/VideoPage'
 import { SignIn } from './components/SignIn'
 
 export const client = new ApolloClient({
-    // uri: 'http://localhost:4000',
-    uri: 'https://traveling-mai.wm.r.appspot.com/',
+    uri: 'http://localhost:4000',
+    // uri: 'https://traveling-mai.wm.r.appspot.com/',
     cache: new InMemoryCache(),
 })
 

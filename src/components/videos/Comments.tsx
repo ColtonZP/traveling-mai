@@ -14,7 +14,7 @@ const Comments = ({ videoId }: any) => {
         },
     })
 
-    if (loading) return <h2>Loading...</h2>
+    if (loading) return <h2>Loading Comments</h2>
 
     return (
         <div className="comments">

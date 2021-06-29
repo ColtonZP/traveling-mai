@@ -19,7 +19,7 @@ export const Playlist = ({ title, playListId }: Props) => {
         },
     })
 
-    if (loading) return <p>loading playlist...</p>
+    if (loading) return <h2>loading playlist...</h2>
 
     return (
         <>

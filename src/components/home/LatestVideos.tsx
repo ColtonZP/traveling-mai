@@ -21,7 +21,7 @@ export const LatestVideos = () => {
     if (loading)
         return (
             <div className="home">
-                <h2>Loading...</h2>
+                <h2>Loading Latest Videos</h2>
                 <div className="jumbo-video loading">
                     <div className="video" />
                     <div className="words">
