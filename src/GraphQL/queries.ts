@@ -83,3 +83,22 @@ export const GET_VIDEO = gql`
         }
     }
 `
+
+export const GET_COMMENTS = gql`
+    query getComments($videoId: String!, $key: String!, $pageToken: String) {
+        getComments(videoId: $videoId, key: $key, pageToken: $pageToken) {
+            nextPageToken
+            items {
+                snippet {
+                    topLevelComment {
+                        snippet {
+                            textOriginal
+                            authorDisplayName
+                            authorProfileImageUrl
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
