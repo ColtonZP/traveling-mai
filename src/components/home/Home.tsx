@@ -1,5 +1,5 @@
-import { LatestVideos } from './home/LatestVideos'
-import { Playlists } from './home/Playlists'
+import { LatestVideos } from './LatestVideos'
+import { Playlists } from './Playlists'
 
 export const Home = () => {
     return (
