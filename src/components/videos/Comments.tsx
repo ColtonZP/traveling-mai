@@ -4,8 +4,13 @@ import { useQuery } from '@apollo/client'
 
 import { key } from '../../firebase'
 import { GET_COMMENTS } from '../../GraphQL/queries'
+import { Comment } from '../../types/Comment'
 
-const Comments = ({ videoId }: any) => {
+type Props = {
+    videoId: string
+}
+
+const Comments = ({ videoId }: Props) => {
     const { loading, data } = useQuery(GET_COMMENTS, {
         variables: {
             videoId: videoId,
@@ -18,7 +23,7 @@ const Comments = ({ videoId }: any) => {
 
     return (
         <div className="comments">
-            {data.getComments.items.map((comment: any) => (
+            {data.getComments.items.map((comment: Comment) => (
                 <article key={comment.snippet.topLevelComment.id}>
                     <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
                     <div className="text">
