@@ -41,4 +41,5 @@ export function App() {
 
 /*
     Todo: search bar
+    Todo: cache and paginate
  */

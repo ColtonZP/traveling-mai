@@ -10,6 +10,7 @@ export const Playlists = () => {
         variables: {
             channelId: channelId,
             key: key,
+            maxResults: 200,
         },
     })
 
@@ -17,7 +18,7 @@ export const Playlists = () => {
 
     return (
         <>
-            {data.getPlaylists.items.map((playlist: PlaylistPreview) => (
+            {data.playlists.items.map((playlist: PlaylistPreview) => (
                 <Playlist key={playlist.id} title={playlist.snippet.title} playListId={playlist.id} />
             ))}
         </>

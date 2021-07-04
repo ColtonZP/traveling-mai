@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const GET_LATEST = gql`
-    query latest($playlistId: String!, $key: String!) {
-        getLatest(playlistId: $playlistId, key: $key) {
+    query getLatest($playlistId: String!, $key: String!, $maxResults: Int!) {
+        latest(playlistId: $playlistId, key: $key, maxResults: $maxResults) {
             items {
                 id
                 snippet {
@@ -23,8 +23,8 @@ export const GET_LATEST = gql`
 `
 
 export const GET_PLAYLISTS = gql`
-    query playlists($channelId: String!, $key: String!) {
-        getPlaylists(channelId: $channelId, key: $key) {
+    query getPlaylists($channelId: String!, $key: String!, $maxResults: Int!) {
+        playlists(channelId: $channelId, key: $key, maxResults: $maxResults) {
             items {
                 id
                 snippet {
@@ -41,8 +41,8 @@ export const GET_PLAYLISTS = gql`
 `
 
 export const GET_PLAYLIST = gql`
-    query playlist($playlistId: String!, $key: String!) {
-        getPlaylist(playlistId: $playlistId, key: $key) {
+    query getPlaylist($playlistId: String!, $key: String!, $maxResults: Int!) {
+        playlist(playlistId: $playlistId, key: $key, maxResults: $maxResults) {
             items {
                 id
                 snippet {
@@ -63,8 +63,8 @@ export const GET_PLAYLIST = gql`
 `
 
 export const GET_VIDEO = gql`
-    query video($id: String!, $key: String!) {
-        getVideo(id: $id, key: $key) {
+    query getVideo($id: String!, $key: String!) {
+        video(id: $id, key: $key) {
             items {
                 id
                 snippet {
@@ -86,7 +86,7 @@ export const GET_VIDEO = gql`
 
 export const GET_COMMENTS = gql`
     query getComments($videoId: String!, $key: String!, $pageToken: String) {
-        getComments(videoId: $videoId, key: $key, pageToken: $pageToken) {
+        comments(videoId: $videoId, key: $key, pageToken: $pageToken) {
             nextPageToken
             items {
                 snippet {

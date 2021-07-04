@@ -23,7 +23,7 @@ const Comments = ({ videoId }: Props) => {
 
     return (
         <div className="comments">
-            {data.getComments.items.map((comment: Comment) => (
+            {data.comments.items.map((comment: Comment) => (
                 <article key={comment.snippet.topLevelComment.id}>
                     <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
                     <div className="text">

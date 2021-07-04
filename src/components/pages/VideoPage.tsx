@@ -21,8 +21,8 @@ export default function Video() {
     return (
         <div className="video-page">
             <VideoFrame key={id} videoId={id} />
-            <h2>{data.getVideo.items[0].snippet.title}</h2>
-            <p>{data.getVideo.items[0].snippet.description}</p>
+            <h2>{data.video.items[0].snippet.title}</h2>
+            <p>{data.video.items[0].snippet.description}</p>
             <Comments videoId={id} />
         </div>
     )

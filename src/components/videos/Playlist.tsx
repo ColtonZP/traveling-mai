@@ -16,6 +16,7 @@ export const Playlist = ({ title, playListId }: Props) => {
         variables: {
             playlistId: playListId,
             key: key,
+            maxResults: 9,
         },
     })
 
@@ -23,11 +24,11 @@ export const Playlist = ({ title, playListId }: Props) => {
 
     return (
         <>
-            {data.getPlaylist.items.length >= 1 && (
+            {data.playlist.items.length >= 1 && (
                 <div className="playlist">
                     <div className="title">
                         <h2>{title}</h2>
-                        {data.getPlaylist.items.length >= 8 && (
+                        {data.playlist.items.length >= 8 && (
                             <Link to={`/playlist/${playListId}`}>
                                 <span>More videos</span>
                                 <img src={arrow} alt="" />
@@ -36,7 +37,7 @@ export const Playlist = ({ title, playListId }: Props) => {
                     </div>
 
                     <div className="videos">
-                        {data.getPlaylist.items.map(
+                        {data.playlist.items.map(
                             (video: Video) =>
                                 video.snippet.title !== 'Private video' && (
                                     <Link

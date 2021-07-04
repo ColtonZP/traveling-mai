@@ -13,6 +13,7 @@ export const PlaylistPage = () => {
         variables: {
             playlistId: id,
             key: key,
+            maxResults: 20,
         },
     })
 
@@ -20,7 +21,7 @@ export const PlaylistPage = () => {
 
     return (
         <div className="playlist-page">
-            {data.getPlaylist.items.map(
+            {data.playlist.items.map(
                 (video: Video) =>
                     video.snippet.title !== 'Private video' && (
                         <Link to={`/video/${video.snippet.resourceId.videoId}`} key={video.id} className="video-link">
