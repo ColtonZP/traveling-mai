@@ -18,7 +18,7 @@ export const PlaylistPage = () => {
 
     return (
         <div className="playlist-page">
-            {data.playlist.items.map(
+            {data.items.map(
                 (video: Video) =>
                     video.snippet.title !== 'Private video' && (
                         <Link to={`/video/${video.snippet.resourceId.videoId}`} key={video.id} className="video-link">

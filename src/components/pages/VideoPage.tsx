@@ -19,8 +19,8 @@ export const VideoPage = () => {
     return (
         <div className="video-page">
             <VideoFrame key={id} videoId={id} />
-            <h2>{data.video.items[0].snippet.title}</h2>
-            <p>{data.video.items[0].snippet.description}</p>
+            <h2>{data.items[0].snippet.title}</h2>
+            <p>{data.items[0].snippet.description}</p>
             <Comments videoId={id} />
         </div>
     )
