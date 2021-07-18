@@ -3,19 +3,12 @@ import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 
 import { key, playlistId } from '../../firebase'
-import { GET_LATEST } from '../../GraphQL/queries'
 import { Video } from '../../types/Video'
 import { VideoFrame } from '../videos/VideoFrame'
 
 export const LatestVideos = () => {
     const [showDescription, updateDesc] = useState<boolean>(false)
-    const { loading, data } = useQuery(GET_LATEST, {
-        variables: {
-            playlistId: playlistId,
-            key: key,
-            maxResults: 5,
-        },
-    })
+
 
     const latestVideo: Video = !loading && data.latest?.items[0]
 
