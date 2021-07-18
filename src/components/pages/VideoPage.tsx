@@ -5,7 +5,7 @@ import { key } from '../../firebase'
 import Comments from '../videos/Comments'
 import { VideoFrame } from '../videos/VideoFrame'
 
-export default function Video() {
+export const VideoPage = () => {
     const { id } = useParams<{ id: string }>()
 
     const { isLoading, error, data } = useQuery('video-page', () =>
