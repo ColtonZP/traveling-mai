@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'react-query'
 
 import { key, playlistId } from '../../firebase'
 import { Video } from '../../types/Video'
@@ -9,10 +9,15 @@ import { VideoFrame } from '../videos/VideoFrame'
 export const LatestVideos = () => {
     const [showDescription, updateDesc] = useState<boolean>(false)
 
+    const { isLoading, error, data } = useQuery('latest', () =>
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=${5}&key=${key}`,
+        ).then(res => res.json()),
+    )
 
-    const latestVideo: Video = !loading && data.latest?.items[0]
+    const latestVideo: Video = !isLoading && data.items[0]
 
-    if (loading)
+    if (isLoading)
         return (
             <div className="home">
                 <h2>Loading Latest Videos</h2>
@@ -44,7 +49,7 @@ export const LatestVideos = () => {
                 </div>
             </div>
             <div className="latest">
-                {data.latest.items.map(
+                {data.items.map(
                     (video: Video, index: number) =>
                         index > 0 && (
                             <a

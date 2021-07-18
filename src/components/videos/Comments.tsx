@@ -1,9 +1,6 @@
-import React from 'react'
-
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'react-query'
 
 import { key } from '../../firebase'
-import { GET_COMMENTS } from '../../GraphQL/queries'
 import { Comment } from '../../types/Comment'
 
 type Props = {
@@ -11,19 +8,17 @@ type Props = {
 }
 
 const Comments = ({ videoId }: Props) => {
-    const { loading, data } = useQuery(GET_COMMENTS, {
-        variables: {
-            videoId: videoId,
-            key: key,
-            pageToken: '',
-        },
-    })
+    const { isLoading, error, data } = useQuery('comments', () =>
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&pageToken=''&key=${key}`,
+        ).then(res => res.json()),
+    )
 
-    if (loading) return <h2>Loading Comments</h2>
+    if (isLoading) return <h2>Loading Comments</h2>
 
     return (
         <div className="comments">
-            {data.comments.items.map((comment: Comment) => (
+            {data.items.map((comment: Comment) => (
                 <article key={comment.snippet.topLevelComment.id}>
                     <img src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
                     <div className="text">

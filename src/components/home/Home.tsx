@@ -5,7 +5,7 @@ export const Home = () => {
     return (
         <div className="home">
             <LatestVideos />
-            {/*<Playlists />*/}
+            <Playlists />
         </div>
     )
 }

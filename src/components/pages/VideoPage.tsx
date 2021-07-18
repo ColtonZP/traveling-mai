@@ -1,22 +1,20 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 
 import { key } from '../../firebase'
-import { GET_VIDEO } from '../../GraphQL/queries'
 import Comments from '../videos/Comments'
 import { VideoFrame } from '../videos/VideoFrame'
 
 export default function Video() {
     const { id } = useParams<{ id: string }>()
 
-    const { loading, data } = useQuery(GET_VIDEO, {
-        variables: {
-            id: id,
-            key: key,
-        },
-    })
+    const { isLoading, error, data } = useQuery('video-page', () =>
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&id=${id}&key=${key}`,
+        ).then(res => res.json()),
+    )
 
-    if (loading) return <h2>Loading Video</h2>
+    if (isLoading) return <h2>Loading Video</h2>
 
     return (
         <div className="video-page">

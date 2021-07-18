@@ -1,25 +1,22 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'react-query'
 
-import { channelId, key } from '../../firebase'
-import { GET_PLAYLISTS } from '../../GraphQL/queries'
+import { channelId, key, playlistId } from '../../firebase'
 import { PlaylistPreview } from '../../types/PlaylistPreview'
 import { Playlist } from '../videos/Playlist'
 
 export const Playlists = () => {
-    const { loading, data } = useQuery(GET_PLAYLISTS, {
-        variables: {
-            channelId: channelId,
-            key: key,
-            maxResults: 200,
-        },
-    })
+    const { isLoading, error, data } = useQuery('playlists', () =>
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=${channelId}&maxResults=${200}&key=${key}`,
+        ).then(res => res.json()),
+    )
 
-    if (loading) return <h2>Loading Playlist</h2>
+    if (isLoading) return <h2>Loading Playlist</h2>
 
     return (
         <>
-            {data.playlists.items.map((playlist: PlaylistPreview) => (
-                <Playlist key={playlist.id} title={playlist.snippet.title} playListId={playlist.id} />
+            {data.items.map((playlist: PlaylistPreview) => (
+                <Playlist key={playlist.id} title={playlist.snippet.title} playlistId={playlist.id} />
             ))}
         </>
     )

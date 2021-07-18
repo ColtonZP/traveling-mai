@@ -1,35 +1,34 @@
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 import { key } from '../../firebase'
-import { GET_PLAYLIST } from '../../GraphQL/queries'
 import arrow from '../../images/arrow.svg'
 import { Video } from '../../types/Video'
 
 type Props = {
     title: string
-    playListId: string
+    playlistId: string
 }
 
-export const Playlist = ({ title, playListId }: Props) => {
-    const { loading, data } = useQuery(GET_PLAYLIST, {
-        variables: {
-            playlistId: playListId,
-            key: key,
-            maxResults: 9,
-        },
-    })
+export const Playlist = ({ title, playlistId }: Props) => {
+    const { isLoading, error, data } = useQuery(title, () =>
+        fetch(
+            `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=${5}&key=${key}`,
+        ).then(res => res.json()),
+    )
 
-    if (loading) return <h2>loading playlist...</h2>
+    console.log({ title, data })
+
+    if (isLoading) return <h2>loading playlist...</h2>
 
     return (
         <>
-            {data.playlist.items.length >= 1 && (
+            {data.items.length >= 1 && (
                 <div className="playlist">
                     <div className="title">
                         <h2>{title}</h2>
-                        {data.playlist.items.length >= 8 && (
-                            <Link to={`/playlist/${playListId}`}>
+                        {data.items.length > 4 && (
+                            <Link to={`/playlist/${playlistId}`}>
                                 <span>More videos</span>
                                 <img src={arrow} alt="" />
                             </Link>
@@ -37,7 +36,7 @@ export const Playlist = ({ title, playListId }: Props) => {
                     </div>
 
                     <div className="videos">
-                        {data.playlist.items.map(
+                        {data.items.map(
                             (video: Video) =>
                                 video.snippet.title !== 'Private video' && (
                                     <Link
