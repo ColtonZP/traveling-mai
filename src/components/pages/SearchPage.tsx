@@ -22,12 +22,14 @@ export const SearchPage = () => {
         <div>
             <h2>Search results for {id}</h2>
 
-            {data.items.map((video: VideoWithVideoId) => (
-                <Link to={`/video/${video.id.videoId}`} key={video.id.videoId} className="video-link">
-                    <img src={video.snippet.thumbnails.medium.url} alt="" />
-                    <h4>{video.snippet.title}</h4>
-                </Link>
-            ))}
+            <div className="video-grid">
+                {data.items.map((video: VideoWithVideoId) => (
+                    <Link to={`/video/${video.id.videoId}`} key={video.id.videoId} className="video-link">
+                        <img src={video.snippet.thumbnails.medium.url} alt="" />
+                        <h4>{video.snippet.title.replace('&#39;', "'")}</h4>
+                    </Link>
+                ))}
+            </div>
         </div>
     )
 }

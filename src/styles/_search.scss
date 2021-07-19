@@ -1,0 +1,15 @@
+.video-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	grid-gap: 2em;
+}
+
+.search {
+	& input {
+		border-radius: 20px;
+		border: none;
+		padding: .2rem 2.2rem .2rem .6rem;
+		width: 250px;
+		outline: none;
+	}
+}
