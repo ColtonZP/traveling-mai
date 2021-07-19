@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import { key } from '../../firebase'
-import { Video } from '../../types/Video'
+import { VideoWithId } from '../../types/Video'
 
 export const PlaylistPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -19,7 +19,7 @@ export const PlaylistPage = () => {
     return (
         <div className="playlist-page">
             {data.items.map(
-                (video: Video) =>
+                (video: VideoWithId) =>
                     video.snippet.title !== 'Private video' && (
                         <Link to={`/video/${video.snippet.resourceId.videoId}`} key={video.id} className="video-link">
                             <img src={video.snippet.thumbnails.maxres?.url} alt="" />

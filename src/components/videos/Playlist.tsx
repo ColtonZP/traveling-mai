@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { key } from '../../firebase'
 import arrow from '../../images/arrow.svg'
-import { Video } from '../../types/Video'
+import { VideoWithId } from '../../types/Video'
 
 type Props = {
     title: string
@@ -19,11 +19,11 @@ export const Playlist = ({ title, playlistId }: Props) => {
         ).then(res => res.json()),
     )
 
-    const [playlist, updatePlaylist] = useState<[Video] | undefined>(undefined)
+    const [playlist, updatePlaylist] = useState<[VideoWithId] | undefined>(undefined)
 
     useEffect(() => {
         if (data) {
-            updatePlaylist(data.items.filter((item: Video) => item.snippet.title !== 'Private video'))
+            updatePlaylist(data.items.filter((item: VideoWithId) => item.snippet.title !== 'Private video'))
         }
     }, [isLoading, data])
 
@@ -45,7 +45,7 @@ export const Playlist = ({ title, playlistId }: Props) => {
                         </div>
 
                         <div className="videos">
-                            {playlist.map((video: Video, index: number) => {
+                            {playlist.map((video: VideoWithId, index: number) => {
                                 return (
                                     index < 4 && (
                                         <Link

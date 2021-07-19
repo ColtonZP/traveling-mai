@@ -102,6 +102,16 @@ iframe {
 	max-width: 1400px;
 }
 
+.search {
+	& input {
+		border-radius: 20px;
+		border: none;
+		padding: .2rem 2.2rem .2rem .6rem;
+		width: 250px;
+		outline: none;
+	}
+}
+
 @import '_header';
 @import '_home';
 @import '_playlist';

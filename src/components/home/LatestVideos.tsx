@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 
 import { key, playlistId } from '../../firebase'
 import blankVideoScreen from '../../images/blankVideoScreen.png'
-import { Video } from '../../types/Video'
+import { VideoWithId } from '../../types/Video'
 import { VideoFrame } from '../videos/VideoFrame'
 
 export const LatestVideos = () => {
@@ -16,7 +16,7 @@ export const LatestVideos = () => {
         ).then(res => res.json()),
     )
 
-    const latestVideo: Video = !isLoading && data.items[0]
+    const latestVideo: VideoWithId = !isLoading && data.items[0]
 
     if (isLoading)
         return (
@@ -38,7 +38,7 @@ export const LatestVideos = () => {
             <div className="jumbo-video">
                 <div className="jumbo-video-player">
                     <img src={blankVideoScreen} alt="" aria-hidden="true" />
-                    <VideoFrame key={latestVideo.id} videoId={latestVideo.snippet.resourceId.videoId} />
+                    <VideoFrame key={latestVideo.id || '123a'} videoId={latestVideo.snippet.resourceId.videoId} />
                 </div>
                 <div className="words">
                     <h3>{latestVideo.snippet.title}</h3>
@@ -54,7 +54,7 @@ export const LatestVideos = () => {
             </div>
             <div className="latest">
                 {data.items.map(
-                    (video: Video, index: number) =>
+                    (video: VideoWithId, index: number) =>
                         index > 0 && (
                             <a
                                 href={`/video/${video.snippet.resourceId.videoId}`}
