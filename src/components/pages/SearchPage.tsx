@@ -14,8 +14,6 @@ export const SearchPage = () => {
         ).then(res => res.json()),
     )
 
-    console.log(data)
-
     if (isLoading) return <h2>Loading Video</h2>
 
     return (

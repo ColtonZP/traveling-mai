@@ -5,11 +5,38 @@
 }
 
 .search {
-	& input {
+	position: relative;
+	width: 250px;
+
+	& input[type="text"] {
 		border-radius: 20px;
 		border: none;
-		padding: .2rem 2.2rem .2rem .6rem;
-		width: 250px;
+		padding: .4rem 3.2rem .4rem 1rem;
 		outline: none;
+		width: 0;
+		opacity: 0;
+		line-height: 1;
+		position: absolute;
+		right: 0;
+		transition: .4s ease-out width, .4s ease-out opacity;
+	}
+
+	& input[type="image"] {
+		height: 2rem;
+		position: absolute;
+		right: .6rem;
+		top: .2rem;
+		transition: .4s ease-out filter;
+	}
+
+	&:hover {
+		& input[type="text"] {
+			width: 100%;
+			opacity: 1;
+		}
+
+		& input[type="image"] {
+			filter: invert(1);
+		}
 	}
 }

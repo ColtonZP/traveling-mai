@@ -6,7 +6,7 @@ import { Home } from './components/home/Home'
 import { PlaylistPage } from './components/pages/PlaylistPage'
 import { SearchPage } from './components/pages/SearchPage'
 import { VideoPage } from './components/pages/VideoPage'
-import { Search } from './components/Search'
+import { SearchBar } from './components/SearchBar'
 // import { SignIn } from './components/SignIn'
 
 const queryClient = new QueryClient()
@@ -21,7 +21,7 @@ export function App() {
                         <h1>Traveling Mai</h1>
                         <p className="tag-line">Lets travel the world</p>
                     </Link>
-                    <Search />
+                    <SearchBar />
                     {/* <SignIn /> */}
                 </header>
 
