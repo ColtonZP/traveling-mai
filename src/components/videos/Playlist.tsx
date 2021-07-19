@@ -19,7 +19,7 @@ export const Playlist = ({ title, playlistId }: Props) => {
         ).then(res => res.json()),
     )
 
-    const [playlist, updatePlaylist] = useState<any>(undefined)
+    const [playlist, updatePlaylist] = useState<[Video] | undefined>(undefined)
 
     useEffect(() => {
         if (data) {
@@ -36,7 +36,7 @@ export const Playlist = ({ title, playlistId }: Props) => {
                     <div className="playlist">
                         <div className="title">
                             <h2>{title}</h2>
-                            {playlist.length > 5 && (
+                            {playlist.length > 4 && (
                                 <Link to={`/playlist/${playlistId}`}>
                                     <span>More videos</span>
                                     <img src={arrow} alt="" />

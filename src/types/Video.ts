@@ -3,21 +3,21 @@ export interface Video {
     snippet: Snippet
 }
 
-type Snippet = {
+interface Snippet {
     title: string
     description?: string
     thumbnails: Thumbnails
     resourceId: ResourceId
 }
 
-type Thumbnails = {
+interface Thumbnails {
     maxres: MaxRes
 }
 
-type MaxRes = {
+interface MaxRes {
     url: string
 }
 
-type ResourceId = {
+interface ResourceId {
     videoId: string
 }

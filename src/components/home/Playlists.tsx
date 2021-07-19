@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 
 import { channelId, key, playlistId } from '../../firebase'
-import { PlaylistPreview } from '../../types/PlaylistPreview'
+import { PlaylistPreview } from '../../types/Playlist'
 import { Playlist } from '../videos/Playlist'
 
 export const Playlists = () => {

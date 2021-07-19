@@ -2,16 +2,16 @@ export interface Comment {
     snippet: CommentSnippet
 }
 
-type CommentSnippet = {
+interface CommentSnippet {
     topLevelComment: TopLevelComment
 }
 
-type TopLevelComment = {
+interface TopLevelComment {
     id: string
     snippet: TopLevelSnippet
 }
 
-type TopLevelSnippet = {
+interface TopLevelSnippet {
     textOriginal: string
     authorDisplayName: string
     authorProfileImageUrl: string

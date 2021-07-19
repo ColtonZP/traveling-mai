@@ -5,6 +5,6 @@ export interface PlaylistPreview {
     snippet: PlaylistSnippet
 }
 
-type PlaylistSnippet = {
+interface PlaylistSnippet {
     title: string
 }
