@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { key, playlistId } from '../../firebase'
+import blankVideoScreen from '../../images/blankVideoScreen.png'
 import { Video } from '../../types/Video'
 import { VideoFrame } from '../videos/VideoFrame'
 
@@ -35,7 +36,10 @@ export const LatestVideos = () => {
         <>
             <h2>Latest Videos</h2>
             <div className="jumbo-video">
-                <VideoFrame key={latestVideo.id} videoId={latestVideo.snippet.resourceId.videoId} />
+                <div className="jumbo-video-player">
+                    <img src={blankVideoScreen} alt="" aria-hidden="true" />
+                    <VideoFrame key={latestVideo.id} videoId={latestVideo.snippet.resourceId.videoId} />
+                </div>
                 <div className="words">
                     <h3>{latestVideo.snippet.title}</h3>
                     <p>

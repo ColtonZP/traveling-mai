@@ -1,14 +1,14 @@
 .playlist-page {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 2em;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-gap: 2em;
 
-  & img {
-    width: 100%;
-  }
+	& img {
+		width: 100%;
+	}
 
-  & h4 {
-    width: 100%;
-    margin-top: 0.5em;
-  }
+	& h4 {
+		width: 100%;
+		margin-top: 0.5em;
+	}
 }

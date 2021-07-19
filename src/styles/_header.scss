@@ -1,10 +1,10 @@
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 2em auto !important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 2em auto !important;
 
-  & .tag-line {
-    font-size: 1.999rem;
-  }
+	& .tag-line {
+		font-size: 1.999rem;
+	}
 }

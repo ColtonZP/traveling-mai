@@ -2,6 +2,7 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 
 import { key } from '../../firebase'
+import blankVideoScreen from '../../images/blankVideoScreen.png'
 import Comments from '../videos/Comments'
 import { VideoFrame } from '../videos/VideoFrame'
 
@@ -18,7 +19,10 @@ export const VideoPage = () => {
 
     return (
         <div className="video-page">
-            <VideoFrame key={id} videoId={id} />
+            <div className="video-frame">
+                <img src={blankVideoScreen} alt="" aria-hidden="true" />
+                <VideoFrame key={id} videoId={id} />
+            </div>
             <h2>{data.items[0].snippet.title}</h2>
             <p>{data.items[0].snippet.description}</p>
             <Comments videoId={id} />
